@@ -1,0 +1,52 @@
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 100px;
+    color: #74ee15;
+}
+
+.profile_image{
+    margin: 50px 120px 50px 110px;
+    align-items: center;
+}
+
+.profile_image>img{
+    border: 1px solid #74ee15;
+    border-radius: 50%;
+    
+}
+
+
+.profile_info>ul>li{
+    margin: 10px 0px 10px 0px;
+    font-weight: 500;
+}
+
+.profile_info>h1{
+    font-family: 'Big Shoulders Display', cursive;
+}
+
+@media only screen and (max-width: 1129px) {
+    .profile{
+        display: inline;
+    }
+
+    .profile_image{
+        margin: 0px;
+        display:flex;
+        justify-content: center;
+    }
+
+    .profile_info>{
+        margin: 0px;
+
+
+    }
+}

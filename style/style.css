@@ -40,6 +40,10 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
     margin-right: 5px !important;
 }
 
+.navbar-toggler{
+    box-shadow: none !important;
+}
+
 @media only screen and (max-width: 749px) {
     .nav-item{
         margin-left:unset;

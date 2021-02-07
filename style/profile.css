@@ -20,9 +20,27 @@
 .profile_image>img{
     border: 1px solid #74ee15;
     border-radius: 50%;
-
-    
 }
+
+
+
+.social{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0px 30px 0px;
+}
+
+.social>i{
+    margin: 10px;
+    font-size: 35px;
+}
+
+.social>i:hover{
+    color: #74ee15 !important;
+    font-size: 50px;
+}
+
 
 
 .profile_info>ul>li{
@@ -33,6 +51,7 @@
 
 .profile_info>h1{
     font-family: 'Big Shoulders Display', cursive;
+    margin: 20px 0px 20px 0px;
 }
 
 @media only screen and (max-width: 1129px) {
@@ -44,6 +63,7 @@
         margin: 0px;
         display:flex;
         justify-content: center;
+   
     }
 
     .profile_info{

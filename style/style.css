@@ -1,6 +1,13 @@
 @import url("profile.css");
 @import url("Skills.css");
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Rubik&display=swap');
+
+
+.scroll{
+    scroll-margin-top: 70px;
+}
+
+
 .navbar{
     display: flex;
     align-items: center;

@@ -5,6 +5,9 @@
     display: flex;
     align-items: center;
     color: #74ee15 !important;
+    position: sticky !important;
+   top: 0;
+   z-index: 100;
 }
 
 body{
@@ -14,6 +17,9 @@ body{
 .navbar-toggler > span{
     color: #74ee15;
 
+}
+.nav-item>a{
+    color: #74ee15;
 }
 
 .nav-item{
@@ -31,11 +37,23 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 }
 
 
+.navbar-brand{
+    cursor: pointer;
+    font-weight: 800;
+}
+
+
 .nav-item:hover{
     background-color: #74ee15;
     color: #15202B;
     border-radius: 10px;
 }
+
+.nav-item>a:hover{
+    background-color: #74ee15;
+    color: #15202B;
+}
+
 
 .fa{
     margin-right: 5px !important;

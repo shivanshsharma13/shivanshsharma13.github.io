@@ -1,0 +1,16 @@
+.form-control{
+    background-color: transparent !important;
+    color: aliceblue !important;
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #74ee15;
+    margin: 50px;
+}
+
+.form-control:focus {
+    border-color: #74ee15;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 10px #74ee15;
+  }

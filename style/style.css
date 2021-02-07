@@ -1,6 +1,7 @@
 @import url("profile.css");
 @import url("Skills.css");
 @import url("projects.css");
+@import url("contact.css");
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Rubik&display=swap');
 
 
@@ -43,6 +44,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 .nav-item{
     display: contents;
+    font-weight: 400;
 }
 .navbar-nav{
     margin-left: auto;
@@ -77,13 +79,14 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
     justify-content: center;
     align-items: center;
     color: #74ee15;
-    font-size: 30px;
-    font-weight: 400;
+    font-weight:500;
+    font-size: 12px;
 }
 
 .rights>i{
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     margin-right: 10px;
+    font-size: 30px;
 }
 
 

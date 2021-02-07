@@ -15,6 +15,8 @@
 .profile_image{
     margin: 50px 120px 50px 110px;
     align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile_image>img{
@@ -28,18 +30,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px 0px 30px 0px;
-}
-
-.social>i{
-    margin: 10px;
     font-size: 35px;
+    margin: 30px 0px 30px 0px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-.social>i:hover{
-    color: #74ee15 !important;
-    font-size: 50px;
+.social>li>a>i:hover{
+    font-size: 40px;
+    color: #74ee15;
 }
+
+.social>li>a>i{
+    padding: 5px;
+}
+
+
 
 
 
@@ -61,7 +68,6 @@
 
     .profile_image{
         margin: 0px;
-        display:flex;
         justify-content: center;
    
     }
@@ -69,5 +75,4 @@
     .profile_info{
         margin: 0px;
         
-    }
 }

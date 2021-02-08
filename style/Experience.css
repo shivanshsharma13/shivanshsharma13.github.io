@@ -1,0 +1,32 @@
+.inner{
+    margin: 10px;
+}
+
+.experience{
+    border: 1px solid  #74ee15;
+    border-radius: 10px;
+    color: #74ee15;
+    margin: 50px 0px 50px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.col-md-4{
+    text-align: center;
+}
+.col-md-4>img{
+    max-width: 100%;
+}
+
+.exp{
+    margin: 2% 15% 2% 15%;
+}
+
+
+@media only screen and (max-width: 749px){
+    .exp{
+        margin: 2% 8% 2% 8%;
+    }
+}

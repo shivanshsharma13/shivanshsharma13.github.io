@@ -1,11 +1,26 @@
-let addbtn = document.querySelector('#addb');
-let subbtn = document.querySelector('#sub');
-let input = document.querySelector('#intinput');
+const getname = document.querySelector(".name")
+const strgetname = getname.textContent;
+const splitname = strgetname.split("")
+getname.textContent = "";
 
-addbtn.addEventListener('click', () => {
-    input.value = parseInt(input.value) + 1;
-})
 
-subbtn.addEventListener('click', () => {
-    input.value = parseInt(input.value) - 1;
-})
+for (let i = 0; i < splitname.length; i++) {
+    getname.innerHTML += "<span>" + splitname[i] + "</span>";
+}
+
+let char = 0;
+let timer = setInterval(onTick, 50);
+
+
+function onTick() {
+    const span = getname.querySelectorAll('span')[char];
+    console.log(span)
+    span.classList.add('fade');
+    char++;
+    if (char === splitname.length) {
+        clearInterval(timer);
+        timer = null;
+        return;
+    }
+}
+

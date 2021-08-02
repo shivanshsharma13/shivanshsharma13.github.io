@@ -1,3 +1,1 @@
-# Shivkaansh.github.io
-
-My personal Website
+shivkaansh.github.io

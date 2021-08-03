@@ -3,7 +3,7 @@
     --header-height: 3rem;
 
     /*========== Colors ==========*/
-    --hue-color: 213; 
+    --hue-color: 216; 
 
     /* HSL color mode */
     --first-color: hsl(var(--hue-color),69%, 61%);

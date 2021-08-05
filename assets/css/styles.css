@@ -740,10 +740,35 @@ img{
 }
 
 #status{
-    background-color: green;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 8px;
     color: #FFF;
+    background-color: var(--first-color);
+    /* animation: status 10s ease forwards; */
+}
+
+
+/* #status.error{
+    background-color: rgb(206, 97, 97);
+    animation: status 4s ease forwards;
+    color: white;
+} */
+
+@keyframes status{
+    0%{
+        opacity:1;
+        pointer-events: all;
+    }
+
+    90%{
+        opacity:1;
+        pointer-events: all;
+    }
+
+    100%{
+        opacity:0;
+        pointer-events: none;
+    }
 }
 
 /*==================== FOOTER ====================*/

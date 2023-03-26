@@ -1,0 +1,233 @@
+{
+    "basics": {
+        "name": "Shivansh Sharma",
+        "email": "shivansh.sharma1300@gmail.com",
+        "phone": "7247755144",
+        "photo": {
+            "url": "",
+            "filters": {
+                "size": 128,
+                "shape": "square",
+                "border": false,
+                "grayscale": false
+            },
+            "visible": true
+        },
+        "Title": "Developer and Technical content Writer",
+        "summary": "Associate Software Engineer at Encora and Open source Inthusiast",
+        "website": "https://shivanshsharma13.github.io",
+        "headline": "",
+        "location": {
+            "city": "bhopal",
+            "region": "Madhya Pradesh",
+            "address": "",
+            "country": "India",
+            "postalCode": "462026"
+        },
+        "profiles": [
+            {
+                "id": "de382178-1f7a-4529-a827-993ce6153704",
+                "url": "https://twitter.com/devshivansh13",
+                "network": "Twitter",
+                "username": "devshivansh13"
+            },
+            {
+                "id": "c83c16bd-56d4-410e-8489-a8a342eb0dc4",
+                "url": "https://www.linkedin.com/in/shivanshsharma13/",
+                "network": "Linkedin",
+                "username": "shivanshsharma13"
+            },
+            {
+                "network": "Github",
+                "username": "shivanshsharma13",
+                "url": "https://Github.com/shivanshsharma13",
+                "id": "b989aee5-c856-4426-8352-6cd759c697f2"
+            }
+        ],
+        "birthdate": "2000-10-13"
+    },
+    "sections": {
+        "work": {
+            "id": "work",
+            "name": "Work Experience",
+            "type": "work",
+            "items": [
+                {
+                    "id": "08d29e70-e994-4b15-948a-d9868657817b",
+                    "url": "https://www.excellarate.com/",
+                    "date": {
+                        "end": "",
+                        "start": "2000-11-01T18:30:00.000Z"
+                    },
+                    "name": "Excellarate",
+                    "summary": "- Works on Springboot, Swing application of Electronic Pharmacy System in Healthcare department.\n- Working as a Core Java developer",
+                    "position": "Associate Software Engineer"
+                },
+                {
+                    "id": "1e52179a-6d26-4dfa-ab2c-fc0221fa1cb7",
+                    "url": "https://auth.geeksforgeeks.org/user/shiv_ka_ansh/articles",
+                    "date": {
+                        "end": "",
+                        "start": "2020-07-09T18:30:00.000Z"
+                    },
+                    "name": "Geeks for Geeks",
+                    "summary": "- Written several articles regarding Python, Javascript, and ReactJS.\n- Recognized as a Bronze level Technical Writer By GeeksforGeeks",
+                    "position": "Technical Content Writer"
+                }
+            ],
+            "columns": 1,
+            "visible": true
+        },
+        "awards": {
+            "id": "awards",
+            "name": "Awards",
+            "type": "basic",
+            "items": [
+                {
+                    "id": "2aff23d0-9ab3-41cc-9282-5f5a444ecc13",
+                    "url": "geeksforgeeks.org",
+                    "date": "",
+                    "title": "Bronze Level Technical writer",
+                    "awarder": "Geeks for Geeks",
+                    "summary": ""
+                }
+            ],
+            "columns": 2,
+            "visible": true
+        },
+        "skills": {
+            "id": "skills",
+            "name": "Skills",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Programming Languages",
+                    "level": "Python, Javascript, java, Golang",
+                    "levelNum": 0,
+                    "keywords": [],
+                    "id": "2a25601f-eff6-4fc1-adfa-2396b427f6a8"
+                },
+                {
+                    "name": "FrontEnd Skills",
+                    "level": "ReactJS, HTML, CSS, TailwindCSS, NextJS",
+                    "levelNum": 0,
+                    "keywords": [],
+                    "id": "29f2d19e-5cfc-4d01-b03f-b151574f0659"
+                },
+                {
+                    "name": "Backend",
+                    "level": "Flask, Django, Nodejs, ExpressJS",
+                    "levelNum": 0,
+                    "keywords": [],
+                    "id": "6fad3158-e665-431f-b534-364605109f72"
+                },
+                {
+                    "name": "Version Control",
+                    "level": "Git, Github",
+                    "levelNum": 0,
+                    "keywords": [],
+                    "id": "82a0d8a0-e6be-4d21-adb4-5fab266d36a2"
+                }
+            ],
+            "columns": 2,
+            "visible": true
+        },
+        "projects": {
+            "id": "projects",
+            "name": "Projects",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Essay Writer",
+                    "description": "Essay Writer made for practicing essay writing for Placement",
+                    "date": {
+                        "start": "",
+                        "end": ""
+                    },
+                    "url": "https://shivanshsharma13.github.io/Essay_writer",
+                    "summary": "Checks the word, paragraph, and sentence count\n- Tracks the word limit\n- Tracks the backspace counts ",
+                    "image_url":"assets/img/projects/project_3.png"
+                },
+                {
+                    "name": "COVID19 Tracker",
+                    "description": "Made for checking the Covid cases ",
+                    "date": {
+                        "start": "",
+                        "end": ""
+                    },
+                    "url": "https://shivanshsharma13.github.io/covid19_tracker/",
+                    "summary": "Have a filter country-wise and continent wise\n- Used a govt. API for getting data\n- Made a graphs and charts for clear visualization",
+                    "image_url":"assets/img/projects/Project_1.png"
+                },
+                {
+                    "name": "Employee Burnout predictor",
+                    "description": "Finds out the burnout percentage of employee by machine learning",
+                    "date": {
+                        "start": "",
+                        "end": ""
+                    },
+                    "url": "https://burnout-predictor.herokuapp.com/",
+                    "summary": "Shows the burnout percentage with the number of hours a day worked and previous stats\n- It is a SAP Hackathon project from Hackerearth",
+                    "image_url":"assets/img/projects/project_7.png"
+                },
+                {
+                    "name": "Amazon clone",
+                    "description": "Tried to copy Amazon website for learning the new tech in React",
+                    "date": {
+                        "start": "",
+                        "end": ""
+                    },
+                    "url": "https://shivanshsharma13.github.io/Amazon_clone_reactJS/",
+                    "summary": "Shows the product list\n- You can add products to the cart\n- You can go to the cart and remove the products",
+                    "image_url":"https://github.com/shivanshsharma13/Amazon_clone_reactJS/raw/main/main.gif"
+                },
+                {
+                    "name": "Github Clone",
+                    "description": "Tried to copy Github website for learning the new tech in React",
+                    "date": {
+                        "start": "",
+                        "end": ""
+                    },
+                    "url": "https://github.com/shivanshsharma13/github_clone",
+                    "summary": "Shows the product list\n- You can add products to the cart\n- You can go to the cart and remove the products",
+                    "image_url":"assets/img/projects/project_4.png"
+                }
+            ],
+            "columns": 2,
+            "visible": true
+        },
+        "education": {
+            "id": "education",
+            "name": "Education",
+            "type": "basic",
+            "items": [],
+            "columns": 2,
+            "visible": true
+        },
+        "interests": {
+            "id": "interests",
+            "name": "Interests",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Open source technologies",
+                    "keywords": [],
+                    "id": "44939957-69c3-4e0c-87a0-b32f59691589"
+                },
+                {
+                    "name": "Cloud native technology",
+                    "keywords": [],
+                    "id": "608db38b-3cc0-42f0-a324-547fe8c6a22e"
+                },
+                {
+                    "name": "Blockchain technologies",
+                    "keywords": [],
+                    "id": "84ad3b96-7bbd-47f5-bda9-f6fced0ff75d"
+                }
+            ],
+            "columns": 3,
+            "visible": true
+        }
+       
+    }
+}

@@ -548,6 +548,10 @@ img{
     margin-bottom: var(--mb-2-5);
 }
 
+.icon-date{
+    display: flex;
+}
+
 .skills__open .skills__arrow{
     transform:rotate(-180deg)
 }

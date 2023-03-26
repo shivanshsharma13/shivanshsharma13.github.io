@@ -1,0 +1,46 @@
+{
+    "Work": {
+        "name": "Work",
+        "items": [
+            {
+                "name": "Encora",
+                "subtitle": "Associate Software Engineer",
+                "duration": "2021-Present"
+            },
+            {
+                "name": "Technical Content Writing Intern",
+                "subtitle": "Geeks for Geeks",
+                "duration": "2021-Present"
+            },
+            {
+                "name": "Technical Writer",
+                "subtitle": "Devcommunity India",
+                "duration": "2020"
+            }
+            
+        ]
+    
+    },
+    "Education": {
+        "name": "education",
+        "items": [
+            {
+                "name": "Bacheolor of technology",
+                "subtitle": "Rajiv gandhi technical university",
+                "duration": "2018-2022"
+            },
+            {
+                "name": "12th Standard",
+                "subtitle": "CBSE | Asia Pacific International School",
+                "duration": "2017-2018"
+            },
+            {
+                "name": "10th Standard",
+                "subtitle": "CBSE | Asia Pacific International School",
+                "duration": "2015-2016"
+            }
+        ]
+    
+    }
+}
+    

@@ -86,12 +86,16 @@
             <div class="home__container container grid">
                 <div class="home__content grid">
                     <div class="home__social">
-                        <a href="https://www.linkedin.com/in/shivansh-sharma-801297158/" class="home__social-icon">
+                        <a id="linkedin_link" class="home__social-icon">
                             <i class="uil uil-linkedin-alt"></i>
                         </a>
 
-                        <a href="https://github.com/shivkaansh" class="home__social-icon">
+                        <a id="github_link" class="home__social-icon">
                             <i class="uil uil-github-alt"></i>
+                        </a>
+
+                        <a id="twitter_link" class="home__social-icon">
+                            <i class="uil uil-twitter-alt"></i>
                         </a>
                     </div>
 
@@ -117,8 +121,8 @@
 
                     <div class="home__data">
                         <h1 class="home__title">👋Hi, I am Shivansh</h1>
-                        <h3 class="home__subtitle">Computer Science Student</h3>
-                        <p class="home__description">I am a computer science student pursuing my b-tech.</p>
+                        <h3 id="home__subtitle" class="home__subtitle">Computer Science Student</h3>
+                        <p id="home__description" class="home__description">I am a computer science student pursuing my b-tech.</p>
                         <a href="#contact" class="button button--flex">
                             Contact me<i class="uil uil-message"></i>
                         </a>
@@ -152,14 +156,13 @@
 
                     <div class="about__data_point">
                         <i class="uil uil-asterisk"></i>
-                        <p class="about__description">I like to solve problems for data
-                            structures and algorithms.😁</p>
+                        <p class="about__description">Always open to new opportunities</p>
                     </div>
 
                     <div class="about__data_point">
                         <i class="uil uil-asterisk"></i>
                         <p class="about__description">I have a vast interest in machine learning and artificial
-                            intelligence.</p>
+                            intelligence and tools like chatgpt. Will be making something cool with it soon.</p>
                     </div>
 
                     <div class="about__data_point">
@@ -176,8 +179,7 @@
 
                     <div class="about__data_point">
                         <i class="uil uil-asterisk"></i>
-                        <p class="about__description">Some of my favorite book categories are self-help, fiction books,
-                            and sometimes related to investments.</p>
+                        <p class="about__description">Promote good work and learning in public</p>
                     </div>
                     <!-- <div class="about__info">
                         <div>
@@ -196,7 +198,7 @@
                         </div>
                     </div> -->
                     <div class="about__buttons">
-                        <a download="" href="assets/pdf/Shivansh's Resume.pdf" class="button button--flex">
+                        <a download="" href="assets/pdf/shivansharma.pdf" class="button button--flex">
                             Download Resume <i class="uil uil-download-alt button__icon"></i>
                         </a>
                     </div>
@@ -478,107 +480,13 @@
 
                     <!-- qualification 1 Work-->
                     <div class="qualification__content qualification__active" data-content id="education">
-
-                        <div class="qualification__data">
-                            <div>
-                                <h3 class="qualification__title">Bacheolor of technology</h3>
-                                <span class="qualification__subtitle">rajiv gandhi technical university</span>
-                                <div class="qualification__calender">
-                                    <i class="uil uil-calender-alt"></i>
-                                    2018-2022
-                                </div>
-                            </div>
-
-                            <div>
-                                <span class="qualification__rounder"></span>
-                                <span class="qualification__line"></span>
-                            </div>
-                        </div>
-
-
-                        <!-- Qualification 2 -->
-
-                        <div class="qualification__data">
-                            <div></div>
-
-                            <div>
-                                <span class="qualification__rounder"></span>
-                                <span class="qualification__line"></span>
-                            </div>
-
-                            <div>
-                                <h3 class="qualification__title">12th Standard</h3>
-                                <span class="qualification__subtitle">CBSE | </span>
-                                <span class="qualification__subtitle">Asia Pacific International School</span>
-                                <div class="qualification__calender">
-                                    <i class="uil uil-calendar-alt"></i>
-                                    2017-2018
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Qualification 3 -->
-                        <div class="qualification__data">
-
-
-                            <div>
-                                <h3 class="qualification__title">10th Standard</h3>
-                                <span class="qualification__subtitle">CBSE | </span>
-                                <span class="qualification__subtitle">Asia Pacific International School</span>
-                                <div class="qualification__calender">
-                                    <i class="uil uil-calendar-alt"></i>
-                                    2015-2016
-                                </div>
-                            </div>
-                            <div>
-                                <span class="qualification__rounder"></span>
-                                <!-- <span class="qualification__line"></span> -->
-                            </div>
-                        </div>
-
-
+                        <!-- Loaded dynamically -->
                     </div>
 
                     <!-- Work -->
                     <div class="qualification__content" data-content id="work">
-
-                        <div class="qualification__data">
-                            <div>
-                                <h3 class="qualification__title">Technical Content Writing Intern</h3>
-                                <span class="qualification__subtitle">Geeks for Geeks</span>
-                                <div class="qualification__calender">
-                                    <i class="uil uil-calender-alt"></i>
-                                    2021-Present
-                                </div>
-                            </div>
-
-                            <div>
-                                <span class="qualification__rounder"></span>
-                                <span class="qualification__line"></span>
-                            </div>
-                        </div>
-
-
-                        <!-- Qualification 2 -->
-
-                        <div class="qualification__data">
-                            <div></div>
-
-                            <div>
-                                <span class="qualification__rounder"></span>
-                                <!-- <span class="qualification__line"></span> -->
-                            </div>
-
-                            <div>
-                                <h3 class="qualification__title">Technical Writer</h3>
-                                <span class="qualification__subtitle">Devcommunity India</span>
-                                <div class="qualification__calender">
-                                    <i class="uil uil-calendar-alt"></i>
-                                    2020
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Loaded dynamically -->
+                    </div>
 
 
                     </div>
@@ -819,6 +727,8 @@
 
     <!--==================== MAIN JS ====================-->
     <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/dataBindr.js"></script>
+
 </body>
 
 </html>

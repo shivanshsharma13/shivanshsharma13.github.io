@@ -1,0 +1,130 @@
+{
+  "0": {
+    "Title": "Python Program to Get the Class Name of an Instance",
+    "url": "https://www.geeksforgeeks.org/python-program-to-get-the-class-name-of-an-instance/",
+    "date": "Last Updated: 22 Mar, 2023",
+    "summary":"In this article, we will see How To Get a Class Name of a class instance."
+  },
+  "1": {
+    "Title": "How to check whether a given string is an absolute URL or not in JavaScript ?",
+    "url": "https://www.geeksforgeeks.org/how-to-check-whether-a-given-string-is-an-absolute-url-or-not-in-javascript/",
+    "date": "Last Updated: 15 Feb, 2023",
+    "summary":"In this article, we will learn how to return true if the given string is an absolute URL in JavaScript. There are two types of URLs either relative or absolute."
+  },
+  "2": {
+    "Title": "How to returns a passed string with letters in alphabetical order in JavaScript ?",
+    "url": "https://www.geeksforgeeks.org/how-to-write-a-function-that-returns-a-passed-string-with-letters-in-alphabetical-order-in-javascript/",
+    "date": "Last Updated: 09 Jan, 2023",
+    "summary":"The task is to create a function that takes a string and returns the alphabetical order of that string. Hence to achieve this we will go under the split, sort, and join method in javascript."
+  },
+  "3": {
+    "Title": "Hibernate - Annotations",
+    "url": "https://www.geeksforgeeks.org/hibernate-annotations/",
+    "date": "Last Updated: 03 Jan, 2023",
+    "summary":"In this article, we will discuss annotations referred to hibernate. So, the motive of using a hibernate is to skip the SQL part and focus on core java concepts. "
+  },
+  "4": {
+    "Title": "Python Program to Get the File Name From the File Path",
+    "url": "https://www.geeksforgeeks.org/python-program-to-get-the-file-name-from-the-file-path/",
+    "date": "Last Updated: 02 Jan, 2023",
+    "summary":"In this article, we will be looking at the program to get the file name from the given file path in the Python programming language. Sometimes during automation, we might need the file name extracted from the file path. "
+  },
+  "5": {
+    "Title": "How to connect ReactJS with MetaMask ?",
+    "url": "https://www.geeksforgeeks.org/how-to-connect-reactjs-with-metamask/",
+    "date": "Last Updated: 12 Oct, 2022",
+    "summary":" In this article, we will take a look, at how one can connect theirs react js application to Meta mask wallet which is the most used browser tool for sending and receiving signed transactions."
+  },
+  "6": {
+    "Title": "How to create and download CSV file in JavaScript ?",
+    "url": "https://www.geeksforgeeks.org/how-to-create-and-download-csv-file-in-javascript/",
+    "date": "Last Updated: 18 Aug, 2022",
+    "summary":"Sometimes we need to fetch the data in the form of a CSV file, it might be user’s details or other data for machine learning or analytics purposes. We can easily fetch the data from any javascript object or JSON file and download it in the form of a CSV file. "
+  },
+  "7": {
+    "Title": "How to do crud operations in ReactJS ?",
+    "url": "https://www.geeksforgeeks.org/how-to-do-crud-operations-in-reactjs/",
+    "date": "Last Updated: 18 Aug, 2022",
+    "summary":"In this article, we don’t use any JSON-server or Axios for performing the CRUD operation. We will use a simple JavaScript object to do so."
+  },
+  "8": {
+    "Title": "How to change the Tkinter label text?",
+    "url": "https://www.geeksforgeeks.org/how-to-change-the-tkinter-label-text/",
+    "date": "Last Updated: 17 Aug, 2022"
+  },
+  "9": {
+    "Title": "JavaScript promise reject() Method",
+    "url": "https://www.geeksforgeeks.org/javascript-promise-reject-method/",
+    "date": "Last Updated: 31 May, 2022"
+  },
+  "10": {
+    "Title": "How to Catch Multiple Exceptions in One Line in Python?",
+    "url": "https://www.geeksforgeeks.org/how-to-catch-multiple-exceptions-in-one-line-in-python/",
+    "date": "Last Updated: 02 Mar, 2022"
+  },
+  "11": {
+    "Title": "How to connect ReactJS with flask API ?",
+    "url": "https://www.geeksforgeeks.org/how-to-connect-reactjs-with-flask-api/",
+    "date": "Last Updated: 28 Feb, 2022"
+  },
+  "12": {
+    "Title": "Hibernate - Create POJO Classes",
+    "url": "https://www.geeksforgeeks.org/hibernate-create-pojo-classes/",
+    "date": "Last Updated: 28 Feb, 2022"
+  },
+  "13": {
+    "Title": "React.js Higher-Order Components",
+    "url": "https://www.geeksforgeeks.org/react-js-higher-order-components/",
+    "date": "Last Updated: 22 Feb, 2022"
+  },
+  "14": {
+    "Title": "How to remove brackets from text file in Python ?",
+    "url": "https://www.geeksforgeeks.org/how-to-remove-brackets-from-text-file-in-python/",
+    "date": "Last Updated: 21 Feb, 2022"
+  },
+  "15": {
+    "Title": "React.js without ES6",
+    "url": "https://www.geeksforgeeks.org/react-js-without-es6/",
+    "date": "Last Updated: 21 Feb, 2022"
+  },
+  "16": {
+    "Title": "Change the order of index of a series in Pandas",
+    "url": "https://www.geeksforgeeks.org/change-the-order-of-index-of-a-series-in-pandas/",
+    "date": "Last Updated: 06 Jan, 2022"
+  },
+  "17": {
+    "Title": "How to Scrape all PDF files in a Website?",
+    "url": "https://www.geeksforgeeks.org/how-to-scrape-all-pdf-files-in-a-website/",
+    "date": "Last Updated: 21 Dec, 2021"
+  },
+  "18": {
+    "Title": "Multithreaded download of yahoo stock history with Python - yfinance",
+    "url": "https://www.geeksforgeeks.org/multithreaded-download-of-yahoo-stock-history-with-python-yfinance/",
+    "date": "Last Updated: 15 Sep, 2021"
+  },
+  "19": {
+    "Title": "Disable focus for tkinter widgets - Python",
+    "url": "https://www.geeksforgeeks.org/disable-focus-for-tkinter-widgets-python/",
+    "date": "Last Updated: 05 Apr, 2021"
+  },
+  "20": {
+    "Title": "How to Change Tkinter LableFrame Border Color?",
+    "url": "https://www.geeksforgeeks.org/how-to-change-tkinter-lableframe-border-color/",
+    "date": "Last Updated: 01 Apr, 2021"
+  },
+  "21": {
+    "Title": "How to switch to new window in Selenium for Python?",
+    "url": "https://www.geeksforgeeks.org/how-to-switch-to-new-window-in-selenium-for-python/",
+    "date": "Last Updated: 15 Mar, 2021"
+  },
+  "22": {
+    "Title": "Create a Pandas TimeSeries to display all the Sundays of given year",
+    "url": "https://www.geeksforgeeks.org/create-a-pandas-timeseries-to-display-all-the-sundays-of-given-year/",
+    "date": "Last Updated: 28 Jul, 2020"
+  },
+  "23": {
+    "Title": "Parse XML using Minidom in Python",
+    "url": "https://www.geeksforgeeks.org/parse-xml-using-minidom-in-python/",
+    "date": "Last Updated: 10 Jul, 2020"
+  }
+}

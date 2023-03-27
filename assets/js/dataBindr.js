@@ -1,6 +1,8 @@
 "use strict";
 import data from '../Data/shivansh_data.json' assert {type:'json'};
 import other_data from '../Data/Other_data.json' assert {type:'json'};
+import gfg_data from '../Data/gfg.json' assert {type:'json'};
+import gfg_data2 from '../Data/gfg2.json' assert {type:'json'};
 // console.log(data)
 
 
@@ -178,3 +180,40 @@ works.forEach(function(item, index){
   container.appendChild(div1);
   
   })
+
+
+
+
+  // projects
+
+
+// create the outer div element
+
+
+gfg_data2.forEach(function(item, index){
+  const con = document.getElementById("pro");
+
+  // create the element
+const skillsContent = document.createElement("div");
+skillsContent.classList.add("skills__content", "skills__open");
+
+const skillsList = document.createElement("div");
+skillsList.classList.add("skills__list", "grid");
+
+const articleLink = document.createElement("a");
+articleLink.setAttribute("href", item.url);
+articleLink.classList.add("button", "button--flex", "button--small", "portfolio__button");
+articleLink.textContent = item.Title;
+
+const arrowIcon = document.createElement("i");
+arrowIcon.classList.add("uil", "uil-arrow-right", "button__icon");
+
+articleLink.appendChild(arrowIcon);
+skillsList.appendChild(articleLink);
+skillsContent.appendChild(skillsList);
+
+  con.appendChild(skillsContent)
+
+})
+
+

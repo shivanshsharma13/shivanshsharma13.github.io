@@ -195,7 +195,7 @@ gfg_data2.forEach(function(item, index){
 
   // create the element
 const skillsContent = document.createElement("div");
-skillsContent.classList.add("skills__content", "skills__open");
+skillsContent.classList.add("skills__open");
 
 const skillsList = document.createElement("div");
 skillsList.classList.add("skills__list", "grid");

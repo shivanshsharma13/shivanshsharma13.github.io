@@ -1,219 +1,146 @@
 "use strict";
-import data from '../Data/shivansh_data.json' assert {type:'json'};
-import other_data from '../Data/Other_data.json' assert {type:'json'};
-import gfg_data from '../Data/gfg.json' assert {type:'json'};
-import gfg_data2 from '../Data/gfg2.json' assert {type:'json'};
-// console.log(data)
 
+Promise.all([
+  fetch('/assets/Data/shivansh_data.json').then(response => response.json()),
+  fetch('/assets/Data/Other_data.json').then(response => response.json()),
+  fetch('/assets/Data/gfg.json').then(response => response.json()),
+  fetch('/assets/Data/gfg2.json').then(response => response.json())
+]).then(([data, other_data, gfg_data, gfg_data2]) => {
+    // Social Links
+    document.getElementById("linkedin_link").addEventListener("click", function() {
+        document.getElementById("linkedin_link").href = data.basics.profiles[1].url;
+    });
 
-// linkedin
-document.getElementById("linkedin_link").addEventListener("click", function() {
-    document.getElementById("linkedin_link").href = data.basics.profiles[1].url;
-  });
+    document.getElementById("github_link").addEventListener("click", function() {
+        document.getElementById("github_link").href = data.basics.profiles[2].url;
+    });
 
-// Github
-document.getElementById("github_link").addEventListener("click", function() {
-    document.getElementById("github_link").href = data.basics.profiles[2].url;
-  });
+    document.getElementById("twitter_link").addEventListener("click", function() {
+        document.getElementById("twitter_link").href = data.basics.profiles[0].url;
+    });
 
-// Twitter
-document.getElementById("twitter_link").addEventListener("click", function() {
-    document.getElementById("twitter_link").href = data.basics.profiles[0].url;
-  });
-  
+    // Intro Section
+    document.getElementById("home__description").innerText = data.basics.summary;
+    document.getElementById("home__subtitle").innerText = data.basics.Title;
 
-// function skills (){
-//     let skills = data.sections.skills.items;
-//     console.log(skills)
-// }
+    // Education Section
+    const education = other_data.Education.items;
+    education.forEach(function(item, index) {
+        const container = document.getElementById("education");
+        const div1 = document.createElement("div");
+        div1.className = "qualification__data";
 
-// skills()
+        const div2 = document.createElement("div");
+        const div3 = document.createElement("div");
+        const span1 = document.createElement("span");
+        span1.className = "qualification__rounder";
+        const span2 = document.createElement("span");
+        span2.className = "qualification__line";
+        div3.appendChild(span1);
+        div3.appendChild(span2);
 
-// Intro
-const summary = document.getElementById("home__description").innerText = data.basics.summary
-const title = document.getElementById("home__subtitle").innerText = data.basics.Title
+        const div4 = document.createElement("div");
+        div4.className = "qualification__calender";
+        const i = document.createElement("i");
+        i.className = "uil uil-calendar-alt";
+        const text = document.createTextNode(item.duration);
+        const h3 = document.createElement("h3");
+        h3.className = "qualification__title";
+        h3.appendChild(document.createTextNode(item.name));
+        const span3 = document.createElement("span");
+        span3.className = "qualification__subtitle";
+        span3.appendChild(document.createTextNode(item.subtitle));
 
-console.log(summary)
+        if(index%2!=0) {
+            div1.appendChild(div2);
+            div1.appendChild(div3);
+            div1.appendChild(div4);
+            div4.appendChild(h3);
+            div4.appendChild(span3);
+            div4.appendChild(i);
+            div4.appendChild(text);
+        } else {
+            div1.appendChild(div4);
+            div4.appendChild(h3);
+            div4.appendChild(span3);
+            div4.appendChild(i);
+            div4.appendChild(text);
+            div1.appendChild(div3);
+        }
+        container.appendChild(div1);
+    });
 
+    // Work Section
+    const works = other_data.Work.items;
+    works.forEach(function(item, index) {
+        const container = document.getElementById("work");
+        const div1 = document.createElement("div");
+        div1.className = "qualification__data";
 
-// var image = document.createElement("img");
-// var imageParent = document.getElementById("body");
-// image.className = "img-thumbnail";
-// image.src = "./Archive/Screenshot_2021-06-11-14-23-47-67_70ac116ce739e.jpg"          // image.src = "IMAGE URL/PATH"
-// imageParent.appendChild(image);
+        const div2 = document.createElement("div");
+        const div3 = document.createElement("div");
+        const span1 = document.createElement("span");
+        span1.className = "qualification__rounder";
+        const span2 = document.createElement("span");
+        span2.className = "qualification__line";
+        div3.appendChild(span1);
+        div3.appendChild(span2);
 
+        const div4 = document.createElement("div");
+        div4.className = "qualification__calender";
+        const i = document.createElement("i");
+        i.className = "uil uil-calendar-alt";
+        const text = document.createTextNode(item.duration);
+        const h3 = document.createElement("h3");
+        h3.className = "qualification__title";
+        h3.appendChild(document.createTextNode(item.name));
+        const span3 = document.createElement("span");
+        span3.className = "qualification__subtitle";
+        span3.appendChild(document.createTextNode(item.subtitle));
+        const span5 = document.createElement("span");
+        span5.className = "icon-date";
 
+        if(index%2!=0) {
+            div1.appendChild(div2);
+            div1.appendChild(div3);
+            div1.appendChild(div4);
+            div4.appendChild(h3);
+            div4.appendChild(span3);
+            span5.appendChild(i);
+            span5.appendChild(text);
+            div4.appendChild(span5);
+        } else {
+            div1.appendChild(div4);
+            div4.appendChild(h3);
+            div4.appendChild(span3);
+            span5.appendChild(i);
+            span5.appendChild(text);
+            div4.appendChild(span5);
+            div1.appendChild(div3);
+        }
+        container.appendChild(div1);
+    });
 
+    // Projects Section
+    gfg_data2.forEach(function(item) {
+        const con = document.getElementById("pro");
+        const skillsContent = document.createElement("div");
+        skillsContent.classList.add("skills__open");
 
+        const skillsList = document.createElement("div");
+        skillsList.classList.add("skills__list", "grid");
 
-function createWorkAndEdu(item, index){
+        const articleLink = document.createElement("a");
+        articleLink.setAttribute("href", item.url);
+        articleLink.classList.add("button", "button--flex", "button--small", "portfolio__button");
+        articleLink.textContent = item.Title;
 
-}
+        const arrowIcon = document.createElement("i");
+        arrowIcon.classList.add("uil", "uil-arrow-right", "button__icon");
 
-
-
-
-
-// work and qualification
-
-
-const works = other_data.Work.items
-const education = other_data.Education.items
-
-education.forEach(function(item, index){
-console.log(item)
-// Find the element with ID "myContainer"
-const container = document.getElementById("education");
-
-// Create the outermost <div> element with class "qualification__data"
-const div1 = document.createElement("div");
-div1.className = "qualification__data";
-
-// Create the first empty <div> element
-const div2 = document.createElement("div");
-
-// Create the second <div> element with two child <span> elements
-const div3 = document.createElement("div");
-const span1 = document.createElement("span");
-span1.className = "qualification__rounder";
-const span2 = document.createElement("span");
-span2.className = "qualification__line";
-div3.appendChild(span1);
-div3.appendChild(span2);
-
-// Create the third <div> element with child elements
-const div4 = document.createElement("div");
-div4.className = "qualification__calender";
-const i = document.createElement("i");
-i.className = "uil uil-calendar-alt";
-const text = document.createTextNode(item.duration);
-const h3 = document.createElement("h3");
-h3.className = "qualification__title";
-h3.appendChild(document.createTextNode(item.name));
-const span3 = document.createElement("span");
-span3.className = "qualification__subtitle";
-span3.appendChild(document.createTextNode(item.subtitle));
-
-// Append the three <div> elements as children of the outermost <div> element
-if(index%2!=0){
-  div1.appendChild(div2);
-  div1.appendChild(div3);
-  div1.appendChild(div4);
-  div4.appendChild(h3);
-  div4.appendChild(span3);
-  div4.appendChild(i);
-  div4.appendChild(text);
-  
-}
-else{
-  div1.appendChild(div4);
-  div4.appendChild(h3);
-  div4.appendChild(span3);
-  div4.appendChild(i);
-  div4.appendChild(text);
-  div1.appendChild(div3);
-}
-// Append the outermost <div> element to the "myContainer" element
-container.appendChild(div1);
-
-})
-
-
-works.forEach(function(item, index){
-  console.log(item)
-  // Find the element with ID "myContainer"
-  const container = document.getElementById("work");
-  
-  // Create the outermost <div> element with class "qualification__data"
-  const div1 = document.createElement("div");
-  div1.className = "qualification__data";
-  
-  // Create the first empty <div> element
-  const div2 = document.createElement("div");
-  
-  // Create the second <div> element with two child <span> elements
-  const div3 = document.createElement("div");
-  const span1 = document.createElement("span");
-  span1.className = "qualification__rounder";
-  const span2 = document.createElement("span");
-  span2.className = "qualification__line";
-  div3.appendChild(span1);
-  div3.appendChild(span2);
-  
-  // Create the third <div> element with child elements
-  const div4 = document.createElement("div");
-  div4.className = "qualification__calender";
-  const i = document.createElement("i");
-  i.className = "uil uil-calendar-alt";
-  const text = document.createTextNode(item.duration);
-  const h3 = document.createElement("h3");
-  h3.className = "qualification__title";
-  h3.appendChild(document.createTextNode(item.name));
-  const span3 = document.createElement("span");
-  span3.className = "qualification__subtitle";
-  span3.appendChild(document.createTextNode(item.subtitle));
-  const span5 = document.createElement("span");
-  span5.className = "icon-date";
-  
-  // Append the three <div> elements as children of the outermost <div> element
-  if(index%2!=0){
-    div1.appendChild(div2);
-    div1.appendChild(div3);
-    div1.appendChild(div4);
-    div4.appendChild(h3);
-    div4.appendChild(span3);
-    span5.appendChild(i)
-    span5.appendChild(text);
-    div4.appendChild(span5);
-    
-  }
-  else{
-    div1.appendChild(div4);
-    div4.appendChild(h3);
-    div4.appendChild(span3);
-    span5.appendChild(i)
-    span5.appendChild(text);
-    div4.appendChild(span5);
-    div1.appendChild(div3);
-  }
-  // Append the outermost <div> element to the "myContainer" element
-  container.appendChild(div1);
-  
-  })
-
-
-
-
-  // projects
-
-
-// create the outer div element
-
-
-gfg_data2.forEach(function(item, index){
-  const con = document.getElementById("pro");
-
-  // create the element
-const skillsContent = document.createElement("div");
-skillsContent.classList.add("skills__open");
-
-const skillsList = document.createElement("div");
-skillsList.classList.add("skills__list", "grid");
-
-const articleLink = document.createElement("a");
-articleLink.setAttribute("href", item.url);
-articleLink.classList.add("button", "button--flex", "button--small", "portfolio__button");
-articleLink.textContent = item.Title;
-
-const arrowIcon = document.createElement("i");
-arrowIcon.classList.add("uil", "uil-arrow-right", "button__icon");
-
-articleLink.appendChild(arrowIcon);
-skillsList.appendChild(articleLink);
-skillsContent.appendChild(skillsList);
-
-  con.appendChild(skillsContent)
-
-})
-
-
+        articleLink.appendChild(arrowIcon);
+        skillsList.appendChild(articleLink);
+        skillsContent.appendChild(skillsList);
+        con.appendChild(skillsContent);
+    });
+});

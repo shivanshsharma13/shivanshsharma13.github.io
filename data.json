@@ -10,47 +10,107 @@
     "resumeUrl": "#",
     "video": "base.mp4"
   },
-
   "hero": {
     "badges": [
-      { "text": "OSS Contributor · Kestra", "highlight": true },
-      { "text": "Release Credits v1.3.0 · v1.3.2", "highlight": false },
-      { "text": "Open to Remote · Worldwide", "highlight": false }
+      {
+        "text": "OSS Contributor · Kestra",
+        "highlight": true
+      },
+      {
+        "text": "Release Credits v1.3.0 · v1.3.2",
+        "highlight": false
+      },
+      {
+        "text": "Open to Remote · Worldwide",
+        "highlight": false
+      }
     ],
     "cta": [
-      { "label": "GitHub →",   "url": "https://github.com/shivanshsharma13", "style": "filled", "newTab": true },
-      { "label": "Hire Me",    "url": "#contact",    "style": "outline", "newTab": false },
-      { "label": "View Work",  "url": "#experience", "style": "outline", "newTab": false }
+      {
+        "label": "GitHub →",
+        "url": "https://github.com/shivanshsharma13",
+        "style": "filled",
+        "newTab": true
+      },
+      {
+        "label": "Hire Me",
+        "url": "#contact",
+        "style": "outline",
+        "newTab": false
+      },
+      {
+        "label": "View Work",
+        "url": "#experience",
+        "style": "outline",
+        "newTab": false
+      }
     ]
   },
-
   "contact": {
     "blurb": "I'm actively looking for remote backend engineering roles at infrastructure and developer-tools companies. If you're building something interesting — or just want to talk about workflow orchestration — reach out.",
     "links": [
-      { "label": "Email",    "display": "shivansh.sharma1300@gmail.com",   "url": "mailto:shivansh.sharma13@yahoo.com",     "newTab": false },
-      { "label": "GitHub",   "display": "github.com/shivanshsharma13",   "url": "https://github.com/shivanshsharma13",    "newTab": true  },
-      { "label": "LinkedIn", "display": "linkedin.com/in/shivanshsharma13","url": "https://linkedin.com/in/shivanshsharma", "newTab": true  },
-      { "label": "Location", "display": "India · Open to Remote Worldwide", "url": "#", "newTab": false }
+      {
+        "label": "Email",
+        "display": "shivansh.sharma1300@gmail.com",
+        "url": "mailto:shivansh.sharma13@yahoo.com",
+        "newTab": false
+      },
+      {
+        "label": "GitHub",
+        "display": "github.com/shivanshsharma13",
+        "url": "https://github.com/shivanshsharma13",
+        "newTab": true
+      },
+      {
+        "label": "LinkedIn",
+        "display": "linkedin.com/in/shivanshsharma13",
+        "url": "https://linkedin.com/in/shivanshsharma",
+        "newTab": true
+      },
+      {
+        "label": "Location",
+        "display": "India · Open to Remote Worldwide",
+        "url": "#",
+        "newTab": false
+      }
     ]
   },
-
   "experience": [
     {
       "period": "2022 — Present",
-      "company": "Your Current Company",
+      "company": "Persistent Systems Ltd - OPTUM Client",
       "role": "Software Engineer",
       "description": "Backend development with Java, designing and maintaining REST APIs, working on distributed systems, and contributing to internal developer tooling. Collaborating across frontend and backend to ship full-stack features.",
-      "tags": ["Java", "REST APIs", "Distributed Systems", "SQL"]
+      "tags": [
+        "Java",
+        "REST APIs",
+        "Distributed Systems",
+        "SQL",
+        "springboot",
+        "Microservices",
+        "Jenkins",
+        "Linux/Ubuntu",
+        "Git / GitHub"
+      ]
     },
     {
       "period": "2023 — Present",
       "company": "Kestra · Open Source",
       "role": "Open Source Contributor",
       "description": "Contributed to Kestra — an open-source workflow orchestration engine. Merged PRs include backend constraint fixes (HasUID), UI improvements, and JDBC repository enhancements. Credited in official release notes for versions v1.3.0 and v1.3.2.",
-      "tags": ["Java", "Workflow Orchestration", "JDBC", "Vue.js", "OSS"]
+      "tags": [
+        "Java",
+        "Workflow Orchestration",
+        "JDBC",
+        "Vue.js",
+        "OSS",
+        "Micronaut",
+        "Docker",
+        "Kubernetes",
+        "Linux/Ubuntu"
+      ]
     }
   ],
-
   "projects": [
     {
       "num": "01",
@@ -74,17 +134,23 @@
       "linkLabel": "Live →"
     }
   ],
-
   "oss": {
-    "label": "Open Source · Kestra — Workflow Orchestration Engine",
-    "prs": [
-      { "title": "PR #5689 — UI fix · Frontend improvement",                              "status": "✓ Merged · v1.3.0", "merged": true },
-      { "title": "PR #5697 — UI fix · Frontend improvement",                              "status": "✓ Merged · v1.3.2", "merged": true },
-      { "title": "PR #14259 — Backend: HasUID constraint fix",                            "status": "✓ Merged",         "merged": true },
-      { "title": "PR #15632 — AbstractJdbcCrudRepository: delete/purge support",          "status": "⏳ In Review",      "merged": false }
+    "label": "Open Source Contributions (Live)",
+    "sources": [
+      {
+        "label": "Kestra",
+        "url": "https://github.com/kestra-io/kestra/pulls/shivanshsharma13"
+      },
+      {
+        "label": "Zulip",
+        "url": "https://github.com/zulip/zulip-flutter/pulls/shivanshsharma13"
+      },
+      {
+        "label": "Grafana",
+        "url": "https://github.com/grafana/grafana/pulls/shivanshsharma13"
+      }
     ]
   },
-
   "sharing": [
     {
       "type": "Open Source",
@@ -105,7 +171,6 @@
       "url": ""
     }
   ],
-
   "education": [
     {
       "period": "2019 — 2023",
@@ -114,79 +179,188 @@
       "detail": "Core coursework in data structures, algorithms, operating systems, distributed systems, and software engineering. Built multiple full-stack projects during the program."
     }
   ],
-
   "skills": [
     {
       "group": "Languages",
       "items": [
-        { "name": "Java",       "primary": true  },
-        { "name": "JavaScript", "primary": true },
-        { "name": "Python",     "primary": false },
-        { "name": "C/C++",      "primary": false },
-        { "name": "Golang",        "primary": false }
+        {
+          "name": "Java",
+          "primary": true
+        },
+        {
+          "name": "JavaScript",
+          "primary": true
+        },
+        {
+          "name": "Python",
+          "primary": false
+        },
+        {
+          "name": "C/C++",
+          "primary": false
+        },
+        {
+          "name": "Golang",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Backend",
       "items": [
-        { "name": "Spring Boot", "primary": true  },
-        { "name": "Microservices",      "primary": true },
-        { "name": "Micronaut",     "primary": false },
-        { "name": "Flask",       "primary": false },
-        { "name": "REST APIs",   "primary": false }
+        {
+          "name": "Spring Boot",
+          "primary": true
+        },
+        {
+          "name": "Microservices",
+          "primary": true
+        },
+        {
+          "name": "Micronaut",
+          "primary": false
+        },
+        {
+          "name": "Flask",
+          "primary": false
+        },
+        {
+          "name": "REST APIs",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Frontend",
       "items": [
-        { "name": "React.js",   "primary": true  },
-        { "name": "Vue.js",     "primary": false },
-        { "name": "HTML/CSS",   "primary": false },
-        { "name": "Tailwind",   "primary": false },
-        { "name": "Bootstrap",  "primary": false }
+        {
+          "name": "React.js",
+          "primary": true
+        },
+        {
+          "name": "Vue.js",
+          "primary": false
+        },
+        {
+          "name": "HTML/CSS",
+          "primary": false
+        },
+        {
+          "name": "Tailwind",
+          "primary": false
+        },
+        {
+          "name": "Bootstrap",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Databases",
       "items": [
-        { "name": "PostgreSQL", "primary": true  },
-        { "name": "Supabase",       "primary": true }, 
-        { "name": "MySQL",      "primary": false },
-        { "name": "JDBC",       "primary": false }
-        
+        {
+          "name": "PostgreSQL",
+          "primary": true
+        },
+        {
+          "name": "Supabase",
+          "primary": true
+        },
+        {
+          "name": "MySQL",
+          "primary": false
+        },
+        {
+          "name": "JDBC",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Infrastructure & Tools",
       "items": [
-        { "name": "Docker",         "primary": true  },
-        { "name": "Kubernetes",     "primary": true  },
-        { "name": "Pulumi",         "primary": true  },
-        { "name": "Helm",           "primary": false },
-        { "name": "kubectl",        "primary": false },
-        { "name": "ArgoCD",         "primary": false },
-        { "name": "Git / GitHub",   "primary": false },
-        { "name": "AWS",            "primary": false },
-        { "name": "Linux/Ubuntu",   "primary": false }
+        {
+          "name": "Docker",
+          "primary": true
+        },
+        {
+          "name": "Kubernetes",
+          "primary": true
+        },
+        {
+          "name": "Pulumi",
+          "primary": true
+        },
+        {
+          "name": "Helm",
+          "primary": false
+        },
+        {
+          "name": "kubectl",
+          "primary": false
+        },
+        {
+          "name": "ArgoCD",
+          "primary": false
+        },
+        {
+          "name": "Git / GitHub",
+          "primary": false
+        },
+        {
+          "name": "AWS",
+          "primary": false
+        },
+        {
+          "name": "Linux/Ubuntu",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Domain Knowledge",
       "items": [
-        { "name": "Workflow Orchestration", "primary": true  },
-        { "name": "OSS Contribution",       "primary": false },
-        { "name": "Agentic AI / LLMs",      "primary": false },
-        { "name": "LangChain",              "primary": false },
-        { "name": "Pulumi",                 "primary": false }
+        {
+          "name": "Workflow Orchestration",
+          "primary": true
+        },
+        {
+          "name": "OSS Contribution",
+          "primary": false
+        },
+        {
+          "name": "Agentic AI / LLMs",
+          "primary": false
+        },
+        {
+          "name": "LangChain",
+          "primary": false
+        },
+        {
+          "name": "Pulumi",
+          "primary": false
+        }
       ]
     },
     {
       "group": "Observability",
       "items": [
-        { "name": "Grafana",        "primary": true },
-        { "name": "Elasticsearch",  "primary": false },
-        { "name": "Kibana",         "primary": false },
-        { "name": "Prometheus",     "primary": false }
+        {
+          "name": "Grafana",
+          "primary": true
+        },
+        {
+          "name": "Elasticsearch",
+          "primary": false
+        },
+        {
+          "name": "Kibana",
+          "primary": false
+        },
+        {
+          "name": "Prometheus",
+          "primary": false
+        }
       ]
     }
   ]

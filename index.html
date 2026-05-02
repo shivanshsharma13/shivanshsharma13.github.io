@@ -517,27 +517,98 @@
       background: var(--amber-dim);
     }
 
-    .oss-block-title {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+    /* OSS TABS */
+    .oss-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .oss-tab {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+    }
+
+    .oss-tab:hover {
+      color: var(--cream);
+    }
+
+    .oss-tab.active {
       color: var(--amber);
+      border-bottom-color: var(--amber);
+    }
+
+    .oss-panel {
+      display: none;
+    }
+
+    .oss-panel.active {
+      display: block;
+    }
+
+    .oss-pr-meta {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
       margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .oss-view-all {
+      color: var(--amber);
+      text-decoration: none;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(200,132,58,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .oss-view-all:hover {
+      border-color: var(--amber);
     }
 
     .oss-prs {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0;
+      max-height: 340px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--amber) transparent;
+    }
+
+    .oss-prs::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .oss-prs::-webkit-scrollbar-thumb {
+      background: var(--amber);
     }
 
     .oss-pr {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       font-size: 0.72rem;
       color: var(--muted);
-      padding-bottom: 0.8rem;
+      padding: 0.8rem 0;
       border-bottom: 1px solid var(--border);
       gap: 1rem;
       flex-wrap: wrap;
@@ -545,15 +616,29 @@
 
     .oss-pr:last-child {
       border-bottom: none;
-      padding-bottom: 0;
+    }
+
+    .oss-pr-title {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.72rem;
+      flex: 1;
+      line-height: 1.5;
+      transition: color 0.2s;
+    }
+
+    .oss-pr-title:hover {
+      color: var(--amber);
     }
 
     .oss-pr-status {
       font-size: 0.58rem;
       letter-spacing: 0.1em;
       border: 1px solid;
-      padding: 0.2rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
     }
 
     .oss-pr-status.merged {
@@ -561,10 +646,39 @@
       border-color: rgba(111, 207, 151, 0.3);
     }
 
-    .oss-pr-status.pending {
-      color: var(--amber);
-      border-color: rgba(200, 132, 58, 0.3);
+    .oss-pr-status.open {
+      color: #79b8ff;
+      border-color: rgba(121, 184, 255, 0.3);
     }
+
+    .oss-pr-status.closed {
+      color: rgba(245,240,232,0.35);
+      border-color: rgba(245,240,232,0.1);
+    }
+
+    .oss-loading {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      padding: 1rem 0;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    .oss-error {
+      font-size: 0.68rem;
+      color: var(--muted);
+      padding: 0.5rem 0;
+    }
+
+    .oss-error a {
+      color: var(--amber);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
 
     /* SHARING */
     #sharing {
@@ -1177,6 +1291,7 @@
     }
 
     function renderProjects(projects, oss) {
+      // Render project cards
       document.getElementById('projectsGrid').innerHTML = projects.map(p => `
       <div class="project-card reveal">
         <p class="project-num">${p.num}</p>
@@ -1184,14 +1299,85 @@
         <p class="project-desc">${p.description}</p>
         <a href="${p.url}" class="project-link" ${p.url !== '#' ? 'target="_blank"' : ''}>${p.linkLabel}</a>
       </div>`).join('');
-      document.getElementById('ossBlock').innerHTML = `
-      <p class="oss-block-title">${oss.label}</p>
-      <div class="oss-prs">${oss.prs.map(pr => `
-        <div class="oss-pr">
-          <span>${pr.title}</span>
-          <span class="oss-pr-status ${pr.merged ? 'merged' : 'pending'}">${pr.status}</span>
-        </div>`).join('')}
-      </div>`;
+
+      // Render OSS block with tabs + live GitHub API
+      renderOss(oss);
+    }
+
+    async function renderOss(oss) {
+      const ossBlock = document.getElementById('ossBlock');
+      const sources = oss.sources || [];
+      if (!sources.length) { ossBlock.style.display = 'none'; return; }
+
+      // Build skeleton: tabs + panels
+      ossBlock.innerHTML = `
+        ${oss.label ? `<p class="oss-block-title">${oss.label}</p>` : ''}
+        <div class="oss-tabs">
+          ${sources.map((s, i) => `<button class="oss-tab${i === 0 ? ' active' : ''}" data-idx="${i}">${s.label}</button>`).join('')}
+        </div>
+        ${sources.map((s, i) => `
+          <div class="oss-panel${i === 0 ? ' active' : ''}" data-idx="${i}">
+            <p class="oss-loading">Fetching live PR data from GitHub…</p>
+          </div>`).join('')}`;
+
+      // Tab click switching
+      ossBlock.querySelectorAll('.oss-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          ossBlock.querySelectorAll('.oss-tab').forEach(t => t.classList.remove('active'));
+          ossBlock.querySelectorAll('.oss-panel').forEach(p => p.classList.remove('active'));
+          tab.classList.add('active');
+          ossBlock.querySelector(`.oss-panel[data-idx="${tab.dataset.idx}"]`).classList.add('active');
+        });
+      });
+
+      // Fetch each source in parallel
+      sources.forEach(async (source, i) => {
+        const panel = ossBlock.querySelector(`.oss-panel[data-idx="${i}"]`);
+        try {
+          // Parse: https://github.com/{owner}/{repo}/pulls/{author}
+          const match = source.url.match(/github\.com\/([^\/]+)\/([^\/]+)\/pulls\/([^\/?#]+)/);
+          if (!match) throw new Error('Invalid GitHub URL format');
+          const [, owner, repo, author] = match;
+
+          const apiUrl = `https://api.github.com/search/issues?q=is:pr+repo:${owner}/${repo}+author:${author}&per_page=50&sort=created&order=desc`;
+          const res = await fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } });
+          if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
+          const data = await res.json();
+
+          if (!data.items || data.items.length === 0) {
+            panel.innerHTML = `<p class="oss-error">No PRs found. <a href="${source.url}" target="_blank">View on GitHub →</a></p>`;
+            return;
+          }
+
+          // Show only merged + open PRs, skip closed-without-merge
+          const visiblePRs = data.items.filter(pr => !!pr.pull_request?.merged_at || pr.state === 'open');
+
+          const prsHtml = visiblePRs.map(pr => {
+            const isMerged = !!pr.pull_request?.merged_at;
+            const state    = isMerged ? 'merged' : 'open';
+            const badge    = isMerged ? '✓ Merged' : '● Open';
+            return `
+              <div class="oss-pr">
+                <a href="${pr.html_url}" target="_blank" class="oss-pr-title">#${pr.number} — ${pr.title}</a>
+                <span class="oss-pr-status ${state}">${badge}</span>
+              </div>`;
+          }).join('');
+
+          const mergedCount = visiblePRs.filter(pr => !!pr.pull_request?.merged_at).length;
+          const openCount   = visiblePRs.filter(pr => pr.state === 'open').length;
+          const metaLabel   = `${visiblePRs.length} PR${visiblePRs.length !== 1 ? 's' : ''} &nbsp;·&nbsp; <span style="color:#6fcf97">${mergedCount} merged</span> &nbsp;·&nbsp; <span style="color:#79b8ff">${openCount} open</span> &nbsp;·&nbsp; ${owner}/${repo}`;
+
+          panel.innerHTML = `
+            <div class="oss-pr-meta">
+              <span>${metaLabel}</span>
+              <a href="${source.url}" target="_blank" class="oss-view-all">View all on GitHub →</a>
+            </div>
+            <div class="oss-prs">${prsHtml}</div>`;
+
+        } catch (err) {
+          panel.innerHTML = `<p class="oss-error">Could not load live PR data (GitHub API rate limit may apply). <a href="${source.url}" target="_blank">View on GitHub →</a></p>`;
+        }
+      });
     }
 
     function renderSharing(items, gfg) {

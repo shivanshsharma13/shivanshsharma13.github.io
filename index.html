@@ -228,7 +228,8 @@
     /* HERO */
     #home {
       min-height: 100vh;
-      min-height: 100dvh; /* mobile: excludes browser chrome/address bar */
+      min-height: 100dvh;
+      /* mobile: excludes browser chrome/address bar */
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -274,8 +275,8 @@
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      line-height: 1.05;
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      line-height: 1.1;
       font-weight: 700;
       color: var(--cream);
       opacity: 0;
@@ -576,7 +577,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(200,132,58,0.3);
+      border-bottom: 1px solid rgba(200, 132, 58, 0.3);
       transition: border-color 0.2s;
     }
 
@@ -652,8 +653,8 @@
     }
 
     .oss-pr-status.closed {
-      color: rgba(245,240,232,0.35);
-      border-color: rgba(245,240,232,0.1);
+      color: rgba(245, 240, 232, 0.35);
+      border-color: rgba(245, 240, 232, 0.1);
     }
 
     .oss-loading {
@@ -675,8 +676,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
     }
 
 
@@ -1220,8 +1228,10 @@
         <div class="contact-left reveal" id="contactLeft"></div>
         <div class="reveal">
           <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-            <div class="form-field"><label>Name</label><input name="name" type="text" placeholder="Your name" required /></div>
-            <div class="form-field"><label>Email</label><input name="email" type="email" placeholder="your@email.com" required />
+            <div class="form-field"><label>Name</label><input name="name" type="text" placeholder="Your name"
+                required /></div>
+            <div class="form-field"><label>Email</label><input name="email" type="email" placeholder="your@email.com"
+                required />
             </div>
             <div class="form-field"><label>Message</label><textarea name="message"
                 placeholder="Tell me about the role or project..." required></textarea></div>
@@ -1354,8 +1364,8 @@
 
           const prsHtml = visiblePRs.map(pr => {
             const isMerged = !!pr.pull_request?.merged_at;
-            const state    = isMerged ? 'merged' : 'open';
-            const badge    = isMerged ? '✓ Merged' : '● Open';
+            const state = isMerged ? 'merged' : 'open';
+            const badge = isMerged ? '✓ Merged' : '● Open';
             return `
               <div class="oss-pr">
                 <a href="${pr.html_url}" target="_blank" class="oss-pr-title">#${pr.number} — ${pr.title}</a>
@@ -1364,8 +1374,8 @@
           }).join('');
 
           const mergedCount = visiblePRs.filter(pr => !!pr.pull_request?.merged_at).length;
-          const openCount   = visiblePRs.filter(pr => pr.state === 'open').length;
-          const metaLabel   = `${visiblePRs.length} PR${visiblePRs.length !== 1 ? 's' : ''} &nbsp;·&nbsp; <span style="color:#6fcf97">${mergedCount} merged</span> &nbsp;·&nbsp; <span style="color:#79b8ff">${openCount} open</span> &nbsp;·&nbsp; ${owner}/${repo}`;
+          const openCount = visiblePRs.filter(pr => pr.state === 'open').length;
+          const metaLabel = `${visiblePRs.length} PR${visiblePRs.length !== 1 ? 's' : ''} &nbsp;·&nbsp; <span style="color:#6fcf97">${mergedCount} merged</span> &nbsp;·&nbsp; <span style="color:#79b8ff">${openCount} open</span> &nbsp;·&nbsp; ${owner}/${repo}`;
 
           panel.innerHTML = `
             <div class="oss-pr-meta">
@@ -1491,7 +1501,7 @@
       const form = e.target;
       const btn = form.querySelector('button');
       const originalText = btn.textContent;
-      
+
       btn.disabled = true;
       btn.textContent = 'Sending...';
 

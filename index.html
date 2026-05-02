@@ -1,747 +1,438 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #f5f0e8; --ink: #1a1814; --ink2: #211e19;
+      --amber: #c8843a; --amber-dim: rgba(200,132,58,0.15);
+      --muted: rgba(245,240,232,0.45); --border: rgba(245,240,232,0.1);
+      --card: rgba(255,255,255,0.03);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ink); color: var(--cream); font-family: 'DM Mono', monospace; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--amber); }
 
-    <!--==================== UNICONS ====================-->
+    /* VIDEO BG */
+    .video-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .video-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .video-bg::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(26,24,20,0.72) 0%, rgba(26,24,20,0.55) 40%, rgba(26,24,20,0.88) 100%);
+    }
 
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 6vw; transition: background 0.4s, backdrop-filter 0.4s; }
+    nav.scrolled { background: rgba(26,24,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--amber); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(26,24,20,0.97); backdrop-filter: blur(16px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--cream); text-decoration: none; font-family: 'Playfair Display', serif; font-size: 2rem; transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--amber); }
 
-    <!--==================== SWIPER CSS ====================-->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    /* SECTIONS */
+    section { position: relative; z-index: 10; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 7rem 6vw; }
+    .section-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--cream); margin-bottom: 3.5rem; line-height: 1.15; }
+    .section-title span { color: var(--amber); }
+    .divider { width: 40px; height: 1px; background: var(--amber); margin: 1rem 0 3.5rem; }
 
-    <!--==================== CSS ====================-->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    /* HERO */
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 6vw 9vh; }
+    .hero-badges { position: absolute; top: 5.5rem; right: 6vw; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; }
+    .badge { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.3rem 0.75rem; border: 1px solid var(--border); color: var(--muted); background: rgba(26,24,20,0.5); backdrop-filter: blur(6px); }
+    .badge.oss { border-color: var(--amber); color: var(--amber); }
+    .hero-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); line-height: 1.05; font-weight: 700; color: var(--cream); opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards; }
+    .hero-title span { color: var(--amber); }
+    .hero-sub { margin-top: 1.6rem; font-size: clamp(0.78rem, 1.3vw, 0.95rem); color: var(--muted); max-width: 480px; line-height: 1.9; opacity: 0; animation: fadeUp 0.9s ease 0.75s forwards; }
+    .cta-row { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s ease 0.95s forwards; }
+    .btn { display: inline-block; padding: 0.7rem 1.8rem; border: 1px solid var(--cream); color: var(--cream); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.25s, color 0.25s, border-color 0.25s; cursor: pointer; }
+    .btn:hover { background: var(--cream); color: var(--ink); }
+    .btn.filled { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+    .btn.filled:hover { background: #b0722e; border-color: #b0722e; color: var(--cream); }
+    .scroll-hint { position: fixed; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0; animation: fadeIn 1s ease 1.8s forwards; }
+    .scroll-hint span { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.3); }
+    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--amber), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 
-    <link rel="icon" href="assets/img/favicon.ico" type="image/png">
+    /* EXPERIENCE */
+    #experience { background: var(--ink2); }
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { display: flex; flex-direction: column; gap: 0.4rem; }
+    .exp-period { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--amber); }
+    .exp-company { font-size: 0.72rem; color: var(--muted); }
+    .exp-role { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--cream); margin-bottom: 0.8rem; }
+    .exp-desc { font-size: 0.75rem; line-height: 1.9; color: var(--muted); }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .tag-pill { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border: 1px solid var(--border); color: var(--muted); }
 
+    /* PROJECTS */
+    #projects { background: var(--ink); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5px; }
+    .project-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .project-card:hover { background: rgba(200,132,58,0.04); border-color: rgba(200,132,58,0.3); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--amber); margin-bottom: 1rem; }
+    .project-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 0.8rem; }
+    .project-desc { font-size: 0.72rem; line-height: 1.85; color: var(--muted); margin-bottom: 1.5rem; }
+    .project-link { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); text-decoration: none; border-bottom: 1px solid rgba(200,132,58,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+    .project-link:hover { border-color: var(--amber); }
+    .oss-block { margin-top: 3rem; border: 1px solid rgba(200,132,58,0.3); padding: 2rem; background: var(--amber-dim); }
+    .oss-block-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; }
+    .oss-prs { display: flex; flex-direction: column; gap: 0.8rem; }
+    .oss-pr { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: var(--muted); padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+    .oss-pr:last-child { border-bottom: none; padding-bottom: 0; }
+    .oss-pr-status { font-size: 0.58rem; letter-spacing: 0.1em; border: 1px solid; padding: 0.2rem 0.5rem; white-space: nowrap; }
+    .oss-pr-status.merged { color: #6fcf97; border-color: rgba(111,207,151,0.3); }
+    .oss-pr-status.pending { color: var(--amber); border-color: rgba(200,132,58,0.3); }
 
-    <title>Shivansh Sharma</title>
+    /* SHARING */
+    #sharing { background: var(--ink2); }
+    .sharing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; }
+    .share-card { border: 1px solid var(--border); padding: 2rem; background: var(--card); transition: border-color 0.25s; }
+    .share-card:hover { border-color: rgba(200,132,58,0.3); }
+    .share-type { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.8rem; }
+    .share-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--cream); margin-bottom: 0.7rem; line-height: 1.4; }
+    .share-title a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(200,132,58,0.3); }
+    .share-title a:hover { border-color: var(--amber); }
+    .share-desc { font-size: 0.7rem; line-height: 1.8; color: var(--muted); }
+
+    /* EDUCATION */
+    #education { background: var(--ink); }
+    .edu-list { display: flex; flex-direction: column; gap: 2rem; }
+    .edu-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-year { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--amber); padding-top: 0.3rem; }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 0.3rem; }
+    .edu-institution { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .edu-detail { font-size: 0.7rem; color: var(--muted); line-height: 1.7; }
+
+    /* SKILLS */
+    #skills { background: var(--ink2); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-group { border: 1px solid var(--border); padding: 1.8rem; background: var(--card); }
+    .skill-group-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.3rem 0.75rem; border: 1px solid var(--border); color: var(--cream); background: rgba(255,255,255,0.02); transition: border-color 0.2s, color 0.2s; }
+    .skill-tag:hover { border-color: var(--amber); color: var(--amber); }
+    .skill-tag.primary { border-color: rgba(200,132,58,0.5); color: var(--amber); }
+
+    /* CONTACT */
+    #contact { background: var(--ink); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left p { font-size: 0.78rem; line-height: 2; color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--muted); font-size: 0.72rem; transition: color 0.2s; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .contact-link:hover { color: var(--amber); }
+    .contact-link-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); min-width: 60px; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-field label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .form-field input, .form-field textarea { background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--cream); font-family: 'DM Mono', monospace; font-size: 0.75rem; padding: 0.8rem 1rem; outline: none; resize: none; transition: border-color 0.2s; }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--amber); }
+    .form-field textarea { height: 120px; }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 2rem 6vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: var(--ink2); }
+    footer p { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); }
+    footer span { color: var(--amber); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scrollPulse { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.6); opacity: 0.4; } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-badges { display: none; }
+      #home { padding: 0 6vw 10vh; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .section-inner { padding: 5rem 6vw; }
+      .projects-grid, .sharing-grid, .skills-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .cta-row { flex-direction: column; }
+      .btn { text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
-    <!--==================== HEADER ====================-->
-    <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">Shivansh</a>
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list grid">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">
-                            <i class="uil uil-home nav__icon"></i> Home
-                        </a>
-                    </li>
 
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">
-                            <i class="uil uil-user nav__icon"></i> About
-                        </a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="#skills" class="nav__link">
-                            <i class="uil uil-clipboard-notes nav__icon"></i> Skills
-                        </a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="#qualifications" class="nav__link">
-                            <i class="uil uil-briefcase-alt nav__icon"></i> Qualification
-                        </a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="#portfolio" class="nav__link">
-                            <i class="uil uil-file-network nav__icon"></i> Porfolio
-                        </a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">
-                            <i class="uil uil-message nav__icon"></i> Contact
-                        </a>
-                    </li>
-                </ul>
-                <i class="uil uil-times nav__close" id="nav-close"></i>
-            </div>
-            <div class="nav__btns">
-
-                <!-- dark theme -->
-                <i class="uil uil-moon change-theme" id="theme-button"></i>
-
-
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="uil uil-apps"></i>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!--==================== MAIN ====================-->
-    <main class="main">
-        <!--==================== HOME ====================-->
-        <section class="home section" id="home">
-            <div class="home__container container grid">
-                <div class="home__content grid">
-                    <div class="home__social">
-                        <a id="linkedin_link" class="home__social-icon">
-                            <i class="uil uil-linkedin-alt"></i>
-                        </a>
-
-                        <a id="github_link" class="home__social-icon">
-                            <i class="uil uil-github-alt"></i>
-                        </a>
-
-                        <a id="twitter_link" class="home__social-icon">
-                            <i class="uil uil-twitter-alt"></i>
-                        </a>
-                    </div>
-
-                    <div class="home__img">
-                        <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <mask id="mask0" mask-type="alpha">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                            </mask>
-                            <g mask="url(#mask0)">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                                <image class="home__blob-img" x='10' y='0' href="assets/img/profile1.png" />
-                            </g>
-                        </svg>
-
-                    </div>
-
-                    <div class="home__data">
-                        <h1 class="home__title">👋Hi, I am Shivansh</h1>
-                        <h3 id="home__subtitle" class="home__subtitle">Computer Science Student</h3>
-                        <p id="home__description" class="home__description">I am a computer science student pursuing my b-tech.</p>
-                        <a href="#contact" class="button button--flex">
-                            Contact me<i class="uil uil-message"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="home__scroll">
-                    <a href="#about" class="home__scroll-button button--flex">
-                        <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-                        <span class="hone__scroll-name">Scroll down</span>
-                        <i class="uil uil-arrow-down home__scroll-arrow"></i>
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-        <!--==================== ABOUT ====================-->
-        <section class="about section" id="about">
-            <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle">My Introduction</span>
-            <div class="about__container container grid">
-                <img src="assets/img/about.jpeg" alt="" class="about__img">
-                <div class="about__data">
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">My primary
-                            focus is to resolve things on a real-world basis
-                            and always wonders about building things to help. </p>
-                    </div>
-
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">Always open to new opportunities</p>
-                    </div>
-
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">I have a vast interest in machine learning and artificial
-                            intelligence and tools like chatgpt. Will be making something cool with it soon.</p>
-                    </div>
-
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">I'm always open to learning new things in technology</p>
-                    </div>
-
-
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">If not in front of the computer, you will find me reading books.
-                        </p>
-                    </div>
-
-                    <div class="about__data_point">
-                        <i class="uil uil-asterisk"></i>
-                        <p class="about__description">Promote good work and learning in public</p>
-                    </div>
-                    <!-- <div class="about__info">
-                        <div>
-                            <span class="about__info-title">10+</span>
-                            <span class="about__info-name">Articles<br>GeeksforGeeks</span>
-                        </div>
-
-                        <div>
-                            <span class="about__info-title">7+</span>
-                            <span class="about__info-name">Compleated<br>Projects</span>
-                        </div>
-
-                        <div>
-                            <span class="about__info-title">+05</span>
-                            <span class="about__info-name">Years<br>Experience</span>
-                        </div>
-                    </div> -->
-                    <div class="about__buttons">
-                        <a download="" href="assets/pdf/shivansharma.pdf" class="button button--flex">
-                            Download Resume <i class="uil uil-download-alt button__icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--==================== SKILLS ====================-->
-        <section class="skills section" id="skills">
-
-            <h2 class="section__title">Skills</h2>
-            <span class="section__subtitle">My Technical skills</span>
-            <div class="skills__conatainer container grid">
-                <div>
-                    <div class="skills__content skills__open">
-                        <div class="skills__header">
-
-                            <i class="uil uil-arrow skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Programming Languages</h1>
-                                <!-- <span class="skills__subtitle">More than 4 years</span> -->
-                            </div>
-
-                            <i class="uil uil-angle-down skills__arrow"></i>
-
-                        </div>
-
-                        <div class="skills__list grid">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">PYTHON</h3>
-                                    <span class="skills__number">90%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__python"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">C/C++</h3>
-                                    <span class="skills__number">80%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__cpp"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">JAVASCRIPT</h3>
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__js"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- skills 2 -->
-
-                    <div class="skills__content skills__close">
-                        <div class="skills__header">
-
-                            <i class="uil uil-brackets-curly skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Frontend Technologies</h1>
-                                <!-- <span class="skills__subtitle">More than 4 years</span> -->
-                            </div>
-
-                            <i class="uil uil-angle-down skills__arrow"></i>
-
-                        </div>
-
-                        <div class="skills__list grid">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">ReactJs</h3>
-                                    <span class="skills__number">85%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__react"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">HTML</h3>
-                                    <span class="skills__number">80%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__node"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">CSS</h3>
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__express"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">Tailwind</h3>
-                                    <span class="skills__number">85%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__react"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">Bootstrap</h3>
-                                    <span class="skills__number">85%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__react"></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- skills 3 start -->
-
-                    <div class="skills__content skills__close">
-                        <div class="skills__header">
-                            <i class="uil uil-server-network skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Backend Technologies</h1>
-                                <!-- <span class="skills__subtitle">More than 4 years</span> -->
-                            </div>
-
-                            <i class="uil uil-angle-down skills__arrow"></i>
-
-                        </div>
-
-                        <div class="skills__list grid">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">Django</h3>
-                                    <span class="skills__number">60%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__django"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">NodeJS</h3>
-                                    <span class="skills__number">80%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__node"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">ExpressJS</h3>
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__express"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">Flask</h3>
-                                    <span class="skills__number">85%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__react"></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- skill-3 khatam -->
-
-
-                    <!-- skills 4 start -->
-
-                    <div class="skills__content skills__close">
-                        <div class="skills__header">
-
-                            <i class="uil uil-database skills__icon"></i>
-
-                            <div>
-                                <h1 class="skills__title">Database</h1>
-                            </div>
-
-                            <i class="uil uil-angle-down skills__arrow"></i>
-
-                        </div>
-
-                        <div class="skills__list grid">
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">SQL</h3>
-                                    <span class="skills__number">70%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__sql"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">Postgre SQL</h3>
-                                    <span class="skills__number">60%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__mongo"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills__data">
-                                <div class="skills__titles">
-                                    <h3 class="skills__name">MongoDB</h3>
-                                    <span class="skills__number">60%</span>
-                                </div>
-                                <div class="skills__bar">
-                                    <span class="skills__percentage skills__mongo"></span>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                    <!-- skill-4 khatam -->
-                </div>
-            </div>
-        </section>
-
-        <!--==================== QUALIFICATION ====================-->
-        <section class="qualification section" id="qualifications">
-
-            <h2 class="section__title">Qualifications</h2>
-            <span class="section__subtitle">My personal Journey</span>
-
-
-            <div class="qualification__container container">
-                <div class="qualification__tabs">
-                    <div class="qualification__button button--flex qualification__active" data-target="#education">
-                        <i class="uil uil-graduation-cap qualification__icon"></i>
-                        Education
-                    </div>
-
-                    <div class="qualification__button button--flex" data-target="#work">
-                        <i class="uil uil-briefcase-alt qualification__icon"></i>
-                        Work
-                    </div>
-
-                </div>
-
-
-
-
-                <div class="qualification__sections">
-
-                    <!-- qualification 1 Work-->
-                    <div class="qualification__content qualification__active" data-content id="education">
-                        <!-- Loaded dynamically -->
-                    </div>
-
-                    <!-- Work -->
-                    <div class="qualification__content" data-content id="work">
-                    <!-- Loaded dynamically -->
-                    </div>
-
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </section>
-
-
-        <!--==================== PORTFOLIO ====================-->
-        <section class="portfolio section" id="portfolio">
-            <h2 class="section__title">Portfolio</h2>
-            <span class="section__subtitle">Most recent work</span>
-            <div class="portfolio__container container swiper-container">
-                <div class="swiper-wrapper">
-
-                    <!-- port-1 -->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img class="portfolio__img" src="assets/img/projects/project_8.png" alt="">
-
-                        <div class="portfolio__data">
-                            <h3 class="porfolio__title">Coro-Know</h3>
-                            <p class="portfolio__description">The Website is made with React js and backed with API.
-                                Also this website have react router functionality of hot reloading. We have used AWS
-                                cloud for hosting and maintaining the web app</p>
-                            <a href="https://master.d30jxlgexv1l4v.amplifyapp.com/"
-                                class="button button--flex button--small portfolio__button">
-                                Live
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <!-- port-2 -->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img class="portfolio__img" src="assets/img/projects/project_7.png" alt="">
-
-                        <div class="portfolio__data">
-                            <h3 class="porfolio__title">Employee Burnout Predictor</h3>
-                            <p class="portfolio__description">This is a flask Website which is made with Machine
-                                learning model to predict Employee Burnout rate.</p>
-                            <a href="https://burnout-predictor.herokuapp.com/"
-                                class="button button--flex button--small portfolio__button">
-                                Live
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <!-- port-3 -->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img class="portfolio__img" src="assets/img/projects/project_3.png" alt="">
-
-                        <div class="portfolio__data">
-                            <h3 class="porfolio__title">Essay writer</h3>
-                            <p class="portfolio__description">Essay writer is a react-js web app which checks the word,
-                                sentence and paragraphs count, and also generates random topics for every time. It is
-                                focused for essay writing practice for essay writing round in placement series.</p>
-                            <a href="https://shivanshsharma13.github.io/Essay_writer"
-                                class="button button--flex button--small portfolio__button">
-                                Live
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- port-4 -->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img class="portfolio__img" src="assets/img/projects/Project_1.png" alt="">
-
-                        <div class="portfolio__data">
-                            <h3 class="porfolio__title">Covid-19 Tracker</h3>
-                            <p class="portfolio__description">This is a reactjs web app which detects the number of
-                                cases in a country. It is an API backed web app.</p>
-                            <a href="https://shivanshsharma13.github.io/covid19_tracker"
-                                class="button button--flex button--small portfolio__button">
-                                Live
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="swiper-button-next">
-                    <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-                </div>
-                <div class="swiper-button-prev">
-                    <i class="uil uil-angle-left-b swiper-portfolio-icon"> </i>
-                </div>
-
-                <div class="swiper-pagination"></div>
-
-            </div>
-        </section>
-
-        <!-- ====================Recent Articles================ -->
-
-        <section class="skills section" id="skills">
-
-            <h2 class="section__title">Recent Articles</h2>
-            <span class="section__subtitle">My Technical Content Writing</span>
-            <div class="container grid">
-                <div id="pro">
-                    
-                </div>
-                        
-        
-
-        <!--==================== CONTACT ME ====================-->
-        <section class="contact section" id="contact">
-            <h2 class="section__title">Contact Me</h2>
-            <span class="section__subtitle">Get in touch</span>
-
-            <div class="contact__container container grid">
-
-                <div>
-                    <div class="contact__information">
-                        <i class="uil uil-phone contact__icon"></i>
-                        <div>
-                            <h3 class="contact__title">Phone number</h3>
-                            <span class="contact__subtitle">724-775-5144</span>
-                        </div>
-                    </div>
-
-
-
-                    <div class="contact__information">
-                        <i class="uil uil-envelope contact__icon"></i>
-                        <div>
-                            <h3 class="contact__title">Email</h3>
-                            <span class="contact__subtitle">shivansh.sharma13@yahoo.com</span>
-                        </div>
-                    </div>
-
-
-
-                    <div class="contact__information">
-                        <i class="uil uil-map-marker contact__icon"></i>
-                        <div>
-                            <h3 class="contact__title">Location</h3>
-                            <span class="contact__subtitle">Bhopal, India</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <form action="https://formspree.io/f/xrgryrze" method="POST" class="contact__form grid"
-                        id="my-form">
-                        <div class="container__inputs grid">
-
-                            <!-- <div class="contact__content">
-                                <label for="" class="contact__label">Name</label>
-                                <input type="text" class="contact__input">
-                            </div> -->
-
-                            <div class="contact__content">
-                                <label for="" class="contact__label">Email</label>
-                                <input name="_replyto" type="email" class="contact__input" required>
-                            </div>
-                        </div>
-
-                        <div class="contact__content">
-                            <label name="message" class="contact__label">Message</label>
-                            <textarea name="message" id="" cols="30" rows=7" class="contact__input" required></textarea>
-                        </div>
-                        <div id="status"></div>
-
-
-                        <div>
-                            <button type="submit" class="button button--flex">
-                                Send Message
-                                <i class="uil uil-message button__icon"></i>
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!--==================== FOOTER ====================-->
-    <footer class="footer">
-
-        <div class="footer__bg">
-            <div class="footer__container container grid">
-                <div>
-                    <h1 class="footer__title">Shivansh</h1>
-                    <span class="footer__subtitle">Computer Science Student</span>
-                </div>
-
-
-
-                <ul class="footer__links">
-                    <li>
-                        <a href="#portfolio" class="footer__link">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#contact" class="footer__link">Contact me</a>
-                    </li>
-                    <li>
-                        <a href="#home" class="footer__link">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about" class="footer__link">About me</a>
-                    </li>
-
-                </ul>
-
-                <div class="footer__social">
-                    <a href="" class="footer__social">
-                        <i class="uil uil-facebook-f"></i>
-                    </a>
-
-                    <a href="" class="footer__social">
-                        <i class="uil uil-instagram"></i>
-                    </a>
-
-                    <a href="" class="footer__social">
-                        <i class="uil uil-twitter-alt"></i>
-                    </a>
-
-                </div>
-            </div>
-            <p class="footer__copy">&#169; Shivansh Sharma. All rights reserved</p>
+  <div class="video-bg">
+    <video id="v1" autoplay muted playsinline></video>
+    <video id="v2"        muted playsinline style="opacity:0;"></video>
+  </div>
+
+  <nav id="nav"></nav>
+  <div class="mobile-menu" id="mobileMenu"></div>
+
+  <section id="home">
+    <div class="hero-badges" id="heroBadges"></div>
+    <p class="hero-tag"    id="heroTag"></p>
+    <h1 class="hero-title" id="heroTitle"></h1>
+    <p class="hero-sub"    id="heroBio"></p>
+    <div class="cta-row"   id="ctaRow"></div>
+  </section>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label reveal">Work History</p>
+      <h2 class="section-title reveal">Experience</h2>
+      <div class="divider reveal"></div>
+      <div class="exp-list" id="expList"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label reveal">What I've Built</p>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="divider reveal"></div>
+      <div class="projects-grid" id="projectsGrid"></div>
+      <div class="oss-block reveal" id="ossBlock"></div>
+    </div>
+  </section>
+
+  <section id="sharing">
+    <div class="section-inner">
+      <p class="section-label reveal">Knowledge & Community</p>
+      <h2 class="section-title reveal">Sharing</h2>
+      <div class="divider reveal"></div>
+      <div class="sharing-grid" id="sharingGrid"></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-inner">
+      <p class="section-label reveal">Academic Background</p>
+      <h2 class="section-title reveal">Education</h2>
+      <div class="divider reveal"></div>
+      <div class="edu-list" id="eduList"></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label reveal">Technical Stack</p>
+      <h2 class="section-title reveal">Skills <span>&</span> Stack</h2>
+      <div class="divider reveal"></div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal">Contact</h2>
+      <div class="divider reveal"></div>
+      <div class="contact-grid">
+        <div class="contact-left reveal" id="contactLeft"></div>
+        <div class="reveal">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required/></div>
+            <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+            <div class="form-field"><label>Message</label><textarea placeholder="Tell me about the role or project..."></textarea></div>
+            <button type="submit" class="btn filled">Send Message →</button>
+          </form>
         </div>
+      </div>
+    </div>
+  </section>
 
-    </footer>
+  <footer id="footer"></footer>
 
-    <!--==================== SCROLL TOP ====================-->
+  <script>
+  const NAV_SECTIONS = ['experience','projects','sharing','education','skills','contact'];
 
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="uil uil-arrow-up scroll__icon"></i>
-    </a>
+  fetch('data.json')
+    .then(r => r.json())
+    .then(d => {
+      document.title = `${d.meta.name} — ${d.meta.title}`;
+      renderNav(d.meta);
+      renderHero(d.meta, d.hero);
+      renderExperience(d.experience);
+      renderProjects(d.projects, d.oss);
+      renderSharing(d.sharing);
+      renderEducation(d.education);
+      renderSkills(d.skills);
+      renderContact(d.contact);
+      renderFooter(d.meta);
+      initVideo(d.meta.video);
+      initNav();
+      initMobileMenu();
+      setTimeout(initScrollReveal, 100);
+    })
+    .catch(err => console.error('Could not load data.json:', err));
 
-    <!--==================== SWIPER JS ====================-->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+  function renderNav(m) {
+    document.getElementById('nav').innerHTML = `
+      <a href="#home" class="nav-logo">${m.name.split(' ')[0]}<span>.</span></a>
+      <ul class="nav-links">${NAV_SECTIONS.map(s=>`<li><a href="#${s}">${s}</a></li>`).join('')}</ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>`;
+    document.getElementById('mobileMenu').innerHTML =
+      NAV_SECTIONS.map(s=>`<a href="#${s}" class="mobile-link">${s[0].toUpperCase()+s.slice(1)}</a>`).join('');
+  }
 
-    <!--==================== MAIN JS ====================-->
-    <script src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/dataBindr.js"></script>
+  function renderHero(m, h) {
+    document.getElementById('heroTag').textContent  = m.tag;
+    document.getElementById('heroBio').textContent  = m.bio;
+    document.getElementById('heroTitle').innerHTML  = `${m.name.split(' ')[0]}<br/><span>${m.tagline}</span><br/>${m.tagline2}`;
+    document.getElementById('heroBadges').innerHTML = h.badges.map(b=>`<div class="badge${b.highlight?' oss':''}">${b.text}</div>`).join('');
+    document.getElementById('ctaRow').innerHTML     = h.cta.map(c=>`<a href="${c.url}" class="btn ${c.style==='filled'?'filled':''}" ${c.newTab?'target="_blank"':''}>${c.label}</a>`).join('');
+  }
 
+  function renderExperience(items) {
+    document.getElementById('expList').innerHTML = items.map(e=>`
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="exp-period">${e.period}</span>
+          <span class="exp-company">${e.company}</span>
+        </div>
+        <div>
+          <p class="exp-role">${e.role}</p>
+          <p class="exp-desc">${e.description}</p>
+          <div class="exp-tags">${e.tags.map(t=>`<span class="tag-pill">${t}</span>`).join('')}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  function renderProjects(projects, oss) {
+    document.getElementById('projectsGrid').innerHTML = projects.map(p=>`
+      <div class="project-card reveal">
+        <p class="project-num">${p.num}</p>
+        <p class="project-name">${p.name}</p>
+        <p class="project-desc">${p.description}</p>
+        <a href="${p.url}" class="project-link" ${p.url!=='#'?'target="_blank"':''}>${p.linkLabel}</a>
+      </div>`).join('');
+    document.getElementById('ossBlock').innerHTML = `
+      <p class="oss-block-title">${oss.label}</p>
+      <div class="oss-prs">${oss.prs.map(pr=>`
+        <div class="oss-pr">
+          <span>${pr.title}</span>
+          <span class="oss-pr-status ${pr.merged?'merged':'pending'}">${pr.status}</span>
+        </div>`).join('')}
+      </div>`;
+  }
+
+  function renderSharing(items) {
+    document.getElementById('sharingGrid').innerHTML = items.map(s=>`
+      <div class="share-card reveal">
+        <p class="share-type">${s.type}</p>
+        <p class="share-title">${s.url?`<a href="${s.url}" target="_blank">${s.title}</a>`:s.title}</p>
+        <p class="share-desc">${s.description}</p>
+      </div>`).join('');
+  }
+
+  function renderEducation(items) {
+    document.getElementById('eduList').innerHTML = items.map(e=>`
+      <div class="edu-item reveal">
+        <div class="edu-year">${e.period}</div>
+        <div>
+          <p class="edu-degree">${e.degree}</p>
+          <p class="edu-institution">${e.institution}</p>
+          <p class="edu-detail">${e.detail}</p>
+        </div>
+      </div>`).join('');
+  }
+
+  function renderSkills(groups) {
+    document.getElementById('skillsGrid').innerHTML = groups.map(g=>`
+      <div class="skill-group reveal">
+        <p class="skill-group-title">${g.group}</p>
+        <div class="skill-tags">${g.items.map(i=>`<span class="skill-tag${i.primary?' primary':''}">${i.name}</span>`).join('')}</div>
+      </div>`).join('');
+  }
+
+  function renderContact(c) {
+    document.getElementById('contactLeft').innerHTML = `
+      <p>${c.blurb}</p>
+      <div class="contact-links">${c.links.map(l=>`
+        <a href="${l.url}" class="contact-link" ${l.newTab?'target="_blank"':''}>
+          <span class="contact-link-label">${l.label}</span>${l.display}
+        </a>`).join('')}
+      </div>`;
+  }
+
+  function renderFooter(m) {
+    document.getElementById('footer').innerHTML = `
+      <p>© ${new Date().getFullYear()} <span>${m.name}</span>. All rights reserved.</p>
+      <p>Built with <span>♥</span> · Open to remote opportunities worldwide</p>`;
+  }
+
+  function initVideo(src) {
+    const FADE = 2.0, v1 = document.getElementById('v1'), v2 = document.getElementById('v2');
+    v1.src = src; v2.src = src;
+    let active = v1, standby = v2;
+    active.play();
+    [v1,v2].forEach(v => v.style.transition = `opacity ${FADE}s ease`);
+    setInterval(() => {
+      const rem = active.duration - active.currentTime;
+      if (!isNaN(rem) && rem <= FADE && standby.paused) {
+        standby.currentTime = 0; standby.play();
+        active.style.opacity = '0'; standby.style.opacity = '1';
+        setTimeout(() => { active.pause(); active.currentTime = 0; [active,standby]=[standby,active]; }, FADE*1000);
+      }
+    }, 1000/60);
+  }
+
+  function initNav() {
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  }
+
+  function initMobileMenu() {
+    document.addEventListener('click', e => {
+      const btn = document.getElementById('hamburger');
+      const mob = document.getElementById('mobileMenu');
+      if (!btn) return;
+      if (btn.contains(e.target)) { btn.classList.toggle('open'); mob.classList.toggle('open'); }
+      else if (e.target.classList.contains('mobile-link')) { btn.classList.remove('open'); mob.classList.remove('open'); }
+    });
+  }
+
+  function initScrollReveal() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Sent ✓'; btn.style.background = '#6fcf97'; btn.style.borderColor = '#6fcf97';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.borderColor = ''; }, 3000);
+  }
+  </script>
 </body>
-
 </html>

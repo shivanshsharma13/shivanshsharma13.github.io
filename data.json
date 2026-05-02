@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "name": "Shivansh Sharma",
+    "title": "Backend Engineer",
+    "tagline": "contributes",
+    "tagline2": "that scales.",
+    "location": "India",
+    "tag": "Agentic AI · Platform · Engineer · India",
+    "bio": "Full stack engineer focused on workflow orchestration, distributed systems, and developer tooling. Open source contributor with merged PRs in Kestra.",
+    "resumeUrl": "#",
+    "video": "base.mp4"
+  },
+
+  "hero": {
+    "badges": [
+      { "text": "OSS Contributor · Kestra", "highlight": true },
+      { "text": "Release Credits v1.3.0 · v1.3.2", "highlight": false },
+      { "text": "Open to Remote · Worldwide", "highlight": false }
+    ],
+    "cta": [
+      { "label": "GitHub →",   "url": "https://github.com/shivanshsharma13", "style": "filled", "newTab": true },
+      { "label": "Hire Me",    "url": "#contact",    "style": "outline", "newTab": false },
+      { "label": "View Work",  "url": "#experience", "style": "outline", "newTab": false }
+    ]
+  },
+
+  "contact": {
+    "blurb": "I'm actively looking for remote backend engineering roles at infrastructure and developer-tools companies. If you're building something interesting — or just want to talk about workflow orchestration — reach out.",
+    "links": [
+      { "label": "Email",    "display": "shivansh.sharma1300@gmail.com",   "url": "mailto:shivansh.sharma13@yahoo.com",     "newTab": false },
+      { "label": "GitHub",   "display": "github.com/shivanshsharma13",   "url": "https://github.com/shivanshsharma13",    "newTab": true  },
+      { "label": "LinkedIn", "display": "linkedin.com/in/shivanshsharma13","url": "https://linkedin.com/in/shivanshsharma", "newTab": true  },
+      { "label": "Location", "display": "India · Open to Remote Worldwide", "url": "#", "newTab": false }
+    ]
+  },
+
+  "experience": [
+    {
+      "period": "2022 — Present",
+      "company": "Your Current Company",
+      "role": "Software Engineer",
+      "description": "Backend development with Java, designing and maintaining REST APIs, working on distributed systems, and contributing to internal developer tooling. Collaborating across frontend and backend to ship full-stack features.",
+      "tags": ["Java", "REST APIs", "Distributed Systems", "SQL"]
+    },
+    {
+      "period": "2023 — Present",
+      "company": "Kestra · Open Source",
+      "role": "Open Source Contributor",
+      "description": "Contributed to Kestra — an open-source workflow orchestration engine. Merged PRs include backend constraint fixes (HasUID), UI improvements, and JDBC repository enhancements. Credited in official release notes for versions v1.3.0 and v1.3.2.",
+      "tags": ["Java", "Workflow Orchestration", "JDBC", "Vue.js", "OSS"]
+    }
+  ],
+
+  "projects": [
+    {
+      "num": "01",
+      "name": "MritunjayBlog",
+      "description": "A containerized blog application with a Docker setup for local development and deployment. Backend infrastructure work in progress — Dockerfile and compose configuration being finalized.",
+      "url": "https://github.com/shivanshsharma13/MritunjayBlog",
+      "linkLabel": "GitHub →"
+    },
+    {
+      "num": "02",
+      "name": "Essay Writer",
+      "description": "React.js web app for essay writing practice. Counts words, sentences, and paragraphs, and generates random topics on demand.",
+      "url": "https://shivanshsharma13.github.io/Essay_writer",
+      "linkLabel": "Live →"
+    },
+    {
+      "num": "03",
+      "name": "Covid-19 Tracker",
+      "description": "Real-time API-backed React app to track COVID-19 case counts by country. Clean, fast, and data-driven.",
+      "url": "https://shivanshsharma13.github.io/covid19_tracker",
+      "linkLabel": "Live →"
+    }
+  ],
+
+  "oss": {
+    "label": "Open Source · Kestra — Workflow Orchestration Engine",
+    "prs": [
+      { "title": "PR #5689 — UI fix · Frontend improvement",                              "status": "✓ Merged · v1.3.0", "merged": true },
+      { "title": "PR #5697 — UI fix · Frontend improvement",                              "status": "✓ Merged · v1.3.2", "merged": true },
+      { "title": "PR #14259 — Backend: HasUID constraint fix",                            "status": "✓ Merged",         "merged": true },
+      { "title": "PR #15632 — AbstractJdbcCrudRepository: delete/purge support",          "status": "⏳ In Review",      "merged": false }
+    ]
+  },
+
+  "sharing": [
+    {
+      "type": "Open Source",
+      "title": "Contributing to Kestra v1.3",
+      "description": "How I found my first issues, read a large Java codebase, aligned with contributor conventions, and got PRs merged into a production workflow engine.",
+      "url": ""
+    },
+    {
+      "type": "Coming Soon",
+      "title": "Writing about workflow orchestration",
+      "description": "Planning Hashnode articles on Kestra internals, JDBC repository patterns, and the architecture behind distributed workflow engines.",
+      "url": ""
+    },
+    {
+      "type": "Coming Soon",
+      "title": "KubeCon Speaker Track",
+      "description": "Working toward submitting a talk on OSS contribution workflows and workflow orchestration tooling for engineering teams.",
+      "url": ""
+    }
+  ],
+
+  "education": [
+    {
+      "period": "2019 — 2023",
+      "degree": "B.Tech in Computer Science",
+      "institution": "Your University · Bhopal, India",
+      "detail": "Core coursework in data structures, algorithms, operating systems, distributed systems, and software engineering. Built multiple full-stack projects during the program."
+    }
+  ],
+
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        { "name": "Java",       "primary": true  },
+        { "name": "JavaScript", "primary": true },
+        { "name": "Python",     "primary": false },
+        { "name": "C/C++",      "primary": false },
+        { "name": "Golang",        "primary": false }
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        { "name": "Spring Boot", "primary": true  },
+        { "name": "Microservices",      "primary": true },
+        { "name": "Micronaut",     "primary": false },
+        { "name": "Flask",       "primary": false },
+        { "name": "REST APIs",   "primary": false }
+      ]
+    },
+    {
+      "group": "Frontend",
+      "items": [
+        { "name": "React.js",   "primary": true  },
+        { "name": "Vue.js",     "primary": false },
+        { "name": "HTML/CSS",   "primary": false },
+        { "name": "Tailwind",   "primary": false },
+        { "name": "Bootstrap",  "primary": false }
+      ]
+    },
+    {
+      "group": "Databases",
+      "items": [
+        { "name": "PostgreSQL", "primary": true  },
+        { "name": "Supabase",       "primary": true }, 
+        { "name": "MySQL",      "primary": false },
+        { "name": "JDBC",       "primary": false }
+        
+      ]
+    },
+    {
+      "group": "Infrastructure & Tools",
+      "items": [
+        { "name": "Docker",         "primary": true  },
+        { "name": "Kubernetes",     "primary": true  },
+        { "name": "Pulumi",         "primary": true  },
+        { "name": "Helm",           "primary": false },
+        { "name": "kubectl",        "primary": false },
+        { "name": "ArgoCD",         "primary": false },
+        { "name": "Git / GitHub",   "primary": false },
+        { "name": "AWS",            "primary": false },
+        { "name": "Linux/Ubuntu",   "primary": false }
+      ]
+    },
+    {
+      "group": "Domain Knowledge",
+      "items": [
+        { "name": "Workflow Orchestration", "primary": true  },
+        { "name": "OSS Contribution",       "primary": false },
+        { "name": "Agentic AI / LLMs",      "primary": false },
+        { "name": "LangChain",              "primary": false },
+        { "name": "Pulumi",                 "primary": false }
+      ]
+    },
+    {
+      "group": "Observability",
+      "items": [
+        { "name": "Grafana",        "primary": true },
+        { "name": "Elasticsearch",  "primary": false },
+        { "name": "Kibana",         "primary": false },
+        { "name": "Prometheus",     "primary": false }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     "location": "India",
     "tag": "Agentic AI · Platform · Engineer · India",
     "bio": "Full stack engineer focused on workflow orchestration, distributed systems, and developer tooling. Open source contributor with merged PRs in Kestra.",
-    "resumeUrl": "#",
+    "resumeUrl": "assets/pdf/shivansharma.pdf",
     "video": "base.mp4"
   },
   "hero": {
@@ -33,20 +33,21 @@
         "newTab": true
       },
       {
-        "label": "Hire Me",
-        "url": "#contact",
+        "label": "Resume",
+        "url": "assets/pdf/shivansharma.pdf",
         "style": "outline",
-        "newTab": false
+        "newTab": true
       },
       {
-        "label": "View Work",
-        "url": "#experience",
+        "label": "Hire Me",
+        "url": "#contact",
         "style": "outline",
         "newTab": false
       }
     ]
   },
   "contact": {
+    "formspreeId": "xdabakon",
     "blurb": "I'm actively looking for remote backend engineering roles at infrastructure and developer-tools companies. If you're building something interesting — or just want to talk about workflow orchestration — reach out.",
     "links": [
       {
@@ -65,6 +66,12 @@
         "label": "LinkedIn",
         "display": "linkedin.com/in/shivanshsharma13",
         "url": "https://linkedin.com/in/shivanshsharma",
+        "newTab": true
+      },
+      {
+        "label": "Resume",
+        "display": "View PDF",
+        "url": "assets/pdf/shivansharma.pdf",
         "newTab": true
       },
       {

@@ -1219,12 +1219,12 @@
       <div class="contact-grid">
         <div class="contact-left reveal" id="contactLeft"></div>
         <div class="reveal">
-          <form class="contact-form" onsubmit="handleSubmit(event)">
-            <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required /></div>
-            <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required />
+          <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-field"><label>Name</label><input name="name" type="text" placeholder="Your name" required /></div>
+            <div class="form-field"><label>Email</label><input name="email" type="email" placeholder="your@email.com" required />
             </div>
-            <div class="form-field"><label>Message</label><textarea
-                placeholder="Tell me about the role or project..."></textarea></div>
+            <div class="form-field"><label>Message</label><textarea name="message"
+                placeholder="Tell me about the role or project..." required></textarea></div>
             <button type="submit" class="btn filled">Send Message →</button>
           </form>
         </div>
@@ -1430,7 +1430,9 @@
       </div>`).join('');
     }
 
+    let contactData = {};
     function renderContact(c) {
+      contactData = c;
       document.getElementById('contactLeft').innerHTML = `
       <p>${c.blurb}</p>
       <div class="contact-links">${c.links.map(l => `
@@ -1484,11 +1486,48 @@
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Sent ✓'; btn.style.background = '#6fcf97'; btn.style.borderColor = '#6fcf97';
-      setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.borderColor = ''; }, 3000);
+      const form = e.target;
+      const btn = form.querySelector('button');
+      const originalText = btn.textContent;
+      
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch(`https://formspree.io/f/${contactData.formspreeId}`, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          btn.textContent = 'Sent ✓';
+          btn.style.background = '#6fcf97';
+          btn.style.borderColor = '#6fcf97';
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        btn.textContent = 'Error! Try again';
+        btn.style.background = '#ff6b6b';
+        btn.style.borderColor = '#ff6b6b';
+      } finally {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 3000);
+      }
     }
   </script>
 </body>
